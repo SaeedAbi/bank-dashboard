@@ -16,6 +16,9 @@ const config: Config = {
       screens: {
         md: '800px',
       },
+      colors: {
+        primary: '#343C6A',
+      },
     },
   },
   plugins: [],
