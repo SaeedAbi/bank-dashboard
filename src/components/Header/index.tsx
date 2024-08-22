@@ -1,11 +1,15 @@
+'use client';
+
 import React from 'react';
+import { useWindowSize } from '@/hooks/helpers';
+
+import DesktopHeader from '@/components/Header/desktopHeader';
+import PhoneHeader from '@/components/Header/phoneHeader';
 
 function Header() {
-  return (
-    <header className='h-20 flex-shrink-0 flex-grow-0 bg-green-800'>
-      header goes here
-    </header>
-  );
+  const { isMobile } = useWindowSize();
+
+  return isMobile ? <PhoneHeader /> : <DesktopHeader />;
 }
 
 export default Header;
