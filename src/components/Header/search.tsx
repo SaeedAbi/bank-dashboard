@@ -1,13 +1,13 @@
 import React from 'react';
-import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 
 function Search() {
   return (
     <Input
-      className='pl-8'
-      addonBefore={<SearchOutlined />}
-      placeholder='large size'
+      style={{ width: '325px', height: '40px' }}
+      placeholder='Search for something'
+      prefix={<SearchOutlined />}
     />
   );
 }
