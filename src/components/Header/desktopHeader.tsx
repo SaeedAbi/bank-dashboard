@@ -8,21 +8,26 @@ function DesktopHeader() {
     <header
       className={`flex min-h-[85px] flex-shrink-0 flex-grow-0 flex-wrap items-center justify-between px-[25px] py-[20px]`}
     >
-      <div className='flex-shrink-0 justify-self-center text-[25px] font-semibold capitalize text-primary'>
+      <div className='h-[34px] w-[129px] flex-shrink-0 justify-self-center text-[25px] font-semibold capitalize text-primary'>
         overview
       </div>
       <div className='flex items-center gap-[20px]'>
-        <Search />
+        <Search height={'50px'} width={'255px'} />
         <Button
+          style={{ height: '50px', width: '50px' }}
           shape={'circle'}
           icon={<SettingOutlined style={{ color: '#718EBF' }} />}
         />
         <Button
+          style={{ height: '50px', width: '50px' }}
           shape={'circle'}
           icon={<BellOutlined style={{ color: '#FE5C73' }} />}
         />
-        <Space wrap size={16}>
-          <Avatar size={64} icon={<UserOutlined />} />
+        <Space wrap>
+          <Avatar
+            style={{ height: '60px', width: '60px' }}
+            icon={<UserOutlined />}
+          />
         </Space>
       </div>
     </header>

@@ -14,17 +14,24 @@ function PhoneHeader() {
         <Button
           type='text'
           shape={'circle'}
-          icon={<MenuOutlined style={{ color: '#343C6A' }} />}
+          icon={
+            <MenuOutlined
+              style={{ color: '#343C6A', backgroundColor: '#F5F7FA' }}
+            />
+          }
         />
-        <span className='justify-self-center text-[20px] font-semibold uppercase text-primary'>
+        <span className='h-[24px] w-[93px] justify-self-center text-[20px] font-semibold uppercase text-primary'>
           overview
         </span>
-        <Space size={16} wrap className='items-stretch'>
-          <Avatar icon={<UserOutlined />} />
+        <Space wrap>
+          <Avatar
+            style={{ height: '35px', width: '35px' }}
+            icon={<UserOutlined />}
+          />
         </Space>
       </div>
 
-      <Search />
+      <Search width='325px' height='40px' />
     </header>
   );
 }
