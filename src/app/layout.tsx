@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import type { Metadata } from 'next';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 import './global.css';
@@ -23,9 +22,9 @@ export default function RootLayout({
 
   return (
     <AntdRegistry>
-      <html lang='en' >
+      <html lang='en'>
         {isFullScreen ? (
-          <FullScreen/>
+          <FullScreen />
         ) : (
           <NotFullScreen>{children}</NotFullScreen>
         )}
