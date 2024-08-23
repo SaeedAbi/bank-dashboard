@@ -7,7 +7,6 @@ import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useWindowSize } from '@/hooks/helpers';
 import {
-  FaCircleDollarToSlot,
   FaCoins,
   FaCreditCard,
   FaHandHoldingDollar,
@@ -18,6 +17,7 @@ import {
 } from 'react-icons/fa6';
 import logo from '../../../public/Logo.png';
 import styles from './styles.module.scss';
+import { PRIVATE_ROUTES } from '@/routes';
 
 function Aside() {
   const { isMobile } = useWindowSize();
@@ -32,7 +32,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.dashboard}
             >
               <FaHouse />
               <span>Dashboard</span>
@@ -41,7 +41,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.transactions}
             >
               <FaMoneyBillTransfer />
               <span>Transactions</span>
@@ -50,7 +50,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.accounts}
             >
               <FaRegUser />
               <span>Accounts</span>
@@ -59,7 +59,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.investments}
             >
               <FaCoins />
               <span>Investments</span>
@@ -68,7 +68,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.cards}
             >
               <FaCreditCard />
               <span>Credit Cards</span>
@@ -77,7 +77,7 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.loans}
             >
               <FaHandHoldingDollar />
               <span>Loans</span>
@@ -86,25 +86,25 @@ function Aside() {
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.services}
             >
               <FaToolbox />
               <span>Services</span>
             </Link>
           </li>
+          {/*<li>*/}
+          {/*  <Link*/}
+          {/*    className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'*/}
+          {/*    href='../../app/services/page.tsx'*/}
+          {/*  >*/}
+          {/*    <FaCircleDollarToSlot />*/}
+          {/*    <span>My Privileges</span>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           <li>
             <Link
               className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
-            >
-              <FaCircleDollarToSlot />
-              <span>My Privileges</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
-              href='#'
+              href={PRIVATE_ROUTES.settings}
             >
               <IoSettingsSharp height={25} width={25} />
               <span>Setting</span>
