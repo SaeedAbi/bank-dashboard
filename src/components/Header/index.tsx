@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import * as React from 'react';
 import { useWindowSize } from '@/hooks/helpers';
 
 import DesktopHeader from '@/components/Header/desktopHeader';

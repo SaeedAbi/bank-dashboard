@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Search from '@/components/Header/Search';
 import { Avatar, Button, Space } from 'antd';
 import { BellOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';

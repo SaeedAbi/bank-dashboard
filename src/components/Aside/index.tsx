@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoSettingsSharp } from 'react-icons/io5';
