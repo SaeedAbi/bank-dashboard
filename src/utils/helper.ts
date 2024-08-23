@@ -6,3 +6,6 @@ export function debounce(fn: (...args: unknown[]) => void, delay: number) {
     timerId = window.setTimeout(() => fn(...args), delay);
   };
 }
+export function isServer(): boolean {
+  return typeof window === 'undefined';
+}

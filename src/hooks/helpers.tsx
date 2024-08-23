@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { debounce } from '@/utils/helper';
+import { debounce, isServer } from '@/utils/helper';
 
 export const MOBILE_BREAKPOINT = 800;
 interface WindowSizeType {
@@ -9,22 +9,32 @@ interface WindowSizeType {
   height: number;
   isMobile: boolean;
 }
-export function useWindowSize(): WindowSizeType {
-  const [state, setState] = React.useState<WindowSizeType>({
-    height: window.innerHeight,
-    width: window.innerWidth,
-    isMobile: window.innerWidth < MOBILE_BREAKPOINT,
-  });
 
-  function calculateState() {
-    setState({
-      height: window.innerHeight,
-      width: window.innerWidth,
-      isMobile: window.innerWidth < MOBILE_BREAKPOINT,
-    });
-  }
+function calculateState() {
+  return isServer()
+    ? {
+        height: 0,
+        width: 0,
+        isMobile: true,
+      }
+    : {
+        height: window.innerHeight,
+        width: window.innerWidth,
+        isMobile: window.innerWidth < MOBILE_BREAKPOINT,
+      };
+}
+
+export function useWindowSize(): WindowSizeType {
+  const [state, setState] = React.useState<WindowSizeType>(() =>
+    calculateState()
+  );
+
   const debouncedCalculation = React.useMemo(
-    () => debounce(calculateState, 300),
+    () =>
+      debounce(() => {
+        const newState = calculateState();
+        setState(newState);
+      }, 500),
     []
   );
 
