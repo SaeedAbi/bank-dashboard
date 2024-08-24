@@ -15,16 +15,16 @@ function Card() {
       </div>
       <div className='flex justify-start pb-[20px] pl-[26px] pt-[33px] text-white'>
         <div>
-          <div className='text-xs font-normal'>card holder</div>
-          <div className='text-sm font-semibold'>eddy cusuma</div>
+          <div className='text-xs font-normal uppercase'>card holder</div>
+          <div className='text-sm font-semibold capitalize'>eddy cusuma</div>
         </div>
         <div className='ml-[67px]'>
-          <div className='text-xs font-normal'>valid thru</div>
+          <div className='text-xs font-normal uppercase'>valid thru</div>
           <div className='text-sm font-semibold'>12/22</div>
         </div>
       </div>
-      <div className='flex justify-between justify-self-center rounded-b-[25px] bg-gradient-to-br from-[#4C49ED] to-[#0A06F4] py-[22px] pl-[16px] pr-[24px]'>
-        <div>3742 2314 1323 1554</div>
+      <div className='flex justify-between justify-self-center rounded-b-[25px] bg-gradient-to-br from-[#4C49ED] to-[#0A06F4] py-[22px] pl-[16px] pr-[24px] text-white'>
+        <div className='text-3xl font-semibold'>3742 2314 1323 1554</div>
         <Image src={bankLogo} alt={'bank logo'} width={44} height={30} />
       </div>
     </div>
