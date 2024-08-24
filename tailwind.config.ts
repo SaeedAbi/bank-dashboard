@@ -26,9 +26,13 @@ const config: Config = {
         md: '800px',
       },
       colors: {
+        black: '#232323',
         primary: '#343C6A',
         secondary: '#B1B1B1',
         mainBg: '#E6EFF5',
+        textBlue: '#718EBF',
+        deposit: '#FF4B4A',
+        withdraw: '#41D4A8',
       },
     },
   },
