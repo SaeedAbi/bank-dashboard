@@ -85,13 +85,13 @@ export interface UserType {
   /**
    * each user can have a multiple cards
    */
-  cards: CardType['CardNumber'][];
+  cards: CardType['cardNumber'][];
 }
 export interface CardType {
   /**
    * primary key
    */
-  CardNumber: string;
+  cardNumber: string;
   balance: number;
   holder: UserType['id'];
   /**
@@ -107,12 +107,12 @@ export interface TransactionType {
    */
   id: string;
   label: string;
-  date: Date;
+  date: string;
   amount: number;
   type: ActionType;
   method: TransactionMethod;
   description?: string;
   category: InventoryType['id'];
   status: TransactionStatus;
-  destinationCardNumber:CardType['CardNumber']
+  destinationCardNumber:CardType['cardNumber']
 }
