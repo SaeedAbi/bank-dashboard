@@ -1,5 +1,5 @@
 import { CardType } from '@/interfaces';
-import { cardSchema } from '@/validation';
+import { cardSchema } from '@/validation/card';
 import { cards } from '@/db';
 
 // in-memory database
