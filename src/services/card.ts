@@ -1,14 +1,16 @@
 import { CardType } from '@/interfaces';
 import { cardSchema } from '@/validation';
+import { cards } from '@/db';
 
-let cardDatabase: CardType[] = []; // In-memory database
+// in-memory database
+let cardDatabase: CardType[] = [...cards];
 
 export async function createCard(card: CardType): Promise<CardType | null> {
   try {
-    // Validate card data
+    // validate card data
     await cardSchema.validate(card);
 
-    // Check if card with the same cardNumber already exists
+    // check if card with the same cardNumber already exists
     if (
       cardDatabase.some(
         (existingCard) => existingCard.cardNumber === card.cardNumber
@@ -42,12 +44,12 @@ export async function updateCard(
   updatedCard: Partial<CardType>
 ): Promise<CardType | null> {
   try {
-    // Validate updated card data
+    // validate updated card data
     if (updatedCard.cardNumber && updatedCard.cardNumber !== cardNumber) {
       throw new Error('Card number cannot be updated.');
     }
 
-    // Find the card to update
+    // find the card to update
     const cardIndex = cardDatabase.findIndex(
       (card) => card.cardNumber === cardNumber
     );
@@ -55,11 +57,11 @@ export async function updateCard(
       throw new Error('Card not found.');
     }
 
-    // Merge updated card data
+    // merge updated card data
     const existingCard = cardDatabase[cardIndex];
     const newCard = { ...existingCard, ...updatedCard };
 
-    // Validate merged card data
+    // validate merged card data
     await cardSchema.validate(newCard);
 
     cardDatabase[cardIndex] = newCard;
@@ -76,6 +78,7 @@ export async function deleteCard(cardNumber: string): Promise<boolean> {
     throw new Error('Card not found.');
   }
 
+  // card deleted successfully
   cardDatabase.splice(cardIndex, 1);
-  return true; // Card deleted successfully
+  return true;
 }

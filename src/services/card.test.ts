@@ -12,10 +12,9 @@ let newCards = [];
 
 describe('CardType CRUD Operations', () => {
   beforeEach(() => {
-    // Clear the database before each test
+    // reset reference before each test
     newCards = [...cards];
   });
-
   test('should create a card', async () => {
     const newCard: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -29,7 +28,6 @@ describe('CardType CRUD Operations', () => {
     const createdCard = await createCard(newCard);
     expect(createdCard).toEqual(newCard);
   });
-
   test('should not create a card with duplicate card number', async () => {
     const card: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -46,7 +44,6 @@ describe('CardType CRUD Operations', () => {
       'Card number already exists'
     );
   });
-
   test('should get a card by card number', async () => {
     const card: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -61,12 +58,10 @@ describe('CardType CRUD Operations', () => {
     const fetchedCard = await getCardByNumber('1234-5678-9012-3456');
     expect(fetchedCard).toEqual(card);
   });
-
   test('should throw an error for non-existent card', async () => {
     const fetchedCard = getCardByNumber('non-existent-card-number');
     await expect(fetchedCard).rejects.toThrow('Card not found.');
   });
-
   test('should update a card', async () => {
     const card: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -82,7 +77,6 @@ describe('CardType CRUD Operations', () => {
     const result = await updateCard('1234-5678-9012-3456', updatedCard);
     expect(result?.balance).toBe(2000);
   });
-
   test('should not update card with invalid data', async () => {
     const card: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -98,7 +92,6 @@ describe('CardType CRUD Operations', () => {
     const result = await updateCard('1234-5678-9012-3456', invalidUpdate);
     expect(result).toBeNull();
   });
-
   test('should delete a card', async () => {
     const card: CardType = {
       cardNumber: '1234-5678-9012-3456',
@@ -114,12 +107,10 @@ describe('CardType CRUD Operations', () => {
     expect(deleteResult).toBe(true);
     expect(newCards).not.toContainEqual(card);
   });
-
   test('should throw an error when deleting a non-existent card', async () => {
     const deleteResult =  deleteCard('non-existent-card-number');
     await expect(deleteResult).rejects.toThrow("Card not found.");
   });
-
   test('should get all cards', async () => {
     const card1: CardType = {
       cardNumber: '1234-5678-9012-3456',
