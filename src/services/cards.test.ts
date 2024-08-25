@@ -4,16 +4,17 @@ import {
   getAllCards,
   updateCard,
   deleteCard,
-} from './card';
+  dbReset,
+} from './cards';
 import { CardType } from '@/interfaces';
-import { cards } from '@/db';
 
 let newCards = [];
 
 describe('CardType CRUD Operations', () => {
   beforeEach(() => {
     // reset reference before each test
-    newCards = [...cards];
+    newCards = [];
+    dbReset();
   });
   test('should create a card', async () => {
     const newCard: CardType = {
@@ -40,9 +41,7 @@ describe('CardType CRUD Operations', () => {
     await createCard(card);
     const duplicateCard = () => createCard(card);
 
-    await expect(duplicateCard).rejects.toThrow(
-      'Card number already exists'
-    );
+    await expect(duplicateCard).rejects.toThrow('Card number already exists');
   });
   test('should get a card by card number', async () => {
     const card: CardType = {
@@ -89,8 +88,8 @@ describe('CardType CRUD Operations', () => {
     await createCard(card);
 
     const invalidUpdate: Partial<CardType> = { balance: 6000 }; // invalid balance
-    const result = await updateCard('1234-5678-9012-3456', invalidUpdate);
-    expect(result).toBeNull();
+    const patchRequest = () => updateCard('1234-5678-9012-3456', invalidUpdate);
+    await expect(patchRequest).rejects.toThrow('Balance must be at most 5000.');
   });
   test('should delete a card', async () => {
     const card: CardType = {
@@ -108,8 +107,8 @@ describe('CardType CRUD Operations', () => {
     expect(newCards).not.toContainEqual(card);
   });
   test('should throw an error when deleting a non-existent card', async () => {
-    const deleteResult =  deleteCard('non-existent-card-number');
-    await expect(deleteResult).rejects.toThrow("Card not found.");
+    const deleteResult = deleteCard('non-existent-card-number');
+    await expect(deleteResult).rejects.toThrow('Card not found.');
   });
   test('should get all cards', async () => {
     const card1: CardType = {

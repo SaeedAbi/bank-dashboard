@@ -82,3 +82,9 @@ export async function deleteCard(cardNumber: string): Promise<boolean> {
   cardDatabase.splice(cardIndex, 1);
   return true;
 }
+// this util function is being used only in test environment
+export async function dbReset() {
+  if (typeof process !== 'undefined' && process.env.NODE_ENV === 'test') {
+    cardDatabase = [];
+  }
+}
