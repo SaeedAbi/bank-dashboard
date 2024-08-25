@@ -436,10 +436,6 @@ export const services: ServiceType[] = [
       "Safety deposit boxes provide secure storage for valuable items such as documents, jewelry, and collectibles. Located in a bank's vault, they offer high-level protection against theft or loss. Customers can access their boxes during bank hours for added security.",
   },
 ];
-
-// =========================================
-// Others
-// =========================================
 export const stocks: StokeType[] = [
   {
     id: 1,
@@ -654,6 +650,10 @@ export const loans: LoanType[] = [
     installment: 6944,
   },
 ];
+
+// =========================================
+// Others
+// =========================================
 export const cards: CardType[] = [
   {
     cardNumber: '1234-5678-9012-3456',
