@@ -1,16 +1,12 @@
 import * as Yup from 'yup';
 import { ActionType, TransactionMethod, TransactionStatus } from '@/interfaces';
+import { cardNumberValidation, dateValidation } from '@/validation/common';
 
 // validation schema for TransactionType
-export const cardSchema = Yup.object().shape({
+export const transactionSchema = Yup.object().shape({
   id: Yup.string().min(6).required(),
   label: Yup.string().min(3).required(),
-  date: Yup.string()
-    .matches(
-      /^\d{4}-\d{2}-\d{2}$/,
-      'Transaction date must be in YYYY-MM-DD format.'
-    )
-    .required(),
+  date: dateValidation,
   amount: Yup.number().required(),
   type: Yup.mixed()
     .oneOf(
@@ -36,5 +32,5 @@ export const cardSchema = Yup.object().shape({
       'Invalid transaction status'
     )
     .required(),
-  destinationCardNumber: Yup.string().length(19).required(),
+  destinationCardNumber: cardNumberValidation,
 });
