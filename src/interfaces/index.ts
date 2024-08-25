@@ -79,7 +79,7 @@ export interface UserType {
    * primary key
    */
   id: number;
-  avatar: string;
+  avatar?: string;
   fullName: string;
   position: InventoryType['id'];
   /**
