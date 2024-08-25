@@ -89,7 +89,9 @@ describe('CardType CRUD Operations', () => {
 
     const invalidUpdate: Partial<CardType> = { balance: 6000 }; // invalid balance
     const patchRequest = () => updateCard('1234-5678-9012-3456', invalidUpdate);
-    await expect(patchRequest).rejects.toThrow('Balance must be at most 5000.');
+    await expect(patchRequest).rejects.toThrow(
+      'balance must be less than or equal to 5000'
+    );
   });
   test('should delete a card', async () => {
     const card: CardType = {
