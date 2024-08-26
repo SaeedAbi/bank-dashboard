@@ -28,7 +28,7 @@ function Aside() {
         <Image src={logo} alt='logo image' width={183} height={36} />
       </div>
       <nav className={styles.secondRow}>
-        <ul className='flex flex-col gap-[42px]'>
+        <ul className='flex flex-col gap-9'>
           <li>
             <Link
               className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
