@@ -1,0 +1,31 @@
+$logo-height: 100px;
+
+.container {
+  @apply flex w-[230px] flex-shrink-0 flex-grow-0 flex-col overflow-hidden border-r border-mainBg;
+
+  @supports (min-height: 100dvh) {
+    min-height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  // fallback value
+  min-height: 100vh;
+  max-height: 100vh;
+
+  .firstRow {
+    @apply h-[#{100px}] flex flex-shrink-0 flex-grow-0 items-center justify-center;
+  }
+
+  .secondRow {
+    @supports (min-height: 100dvh) {
+      min-height: calc(100dvh - #{$logo-height});
+      max-height: calc(100dvh - #{$logo-height});
+    }
+
+    // fallback value
+    min-height: calc(100vh - #{$logo-height});
+    max-height: calc(100vh - #{$logo-height});
+
+    @apply ml-[44px] mt-[31px] overflow-y-auto;
+  }
+}
