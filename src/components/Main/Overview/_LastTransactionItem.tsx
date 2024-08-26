@@ -15,9 +15,9 @@ function LastTransactionItem() {
         <div className='text-base font-medium text-black'>
           Deposit from my Card
         </div>
-        <div className='text-sm font-normal text-textBlue'>25 jan 2022</div>
+        <div className='text-textBlue text-sm font-normal'>25 jan 2022</div>
       </div>
-      <div className='text-base font-medium text-deposit'>$5,000</div>
+      <div className='text-deposit text-base font-medium'>$5,000</div>
     </div>
   );
 }

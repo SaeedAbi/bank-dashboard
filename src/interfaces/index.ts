@@ -42,13 +42,13 @@ export enum CartType {
   gift,
   physical,
   virtual,
-  others
+  others,
 }
 export enum StockType {
   positive,
   negative,
 }
-export enum ServiceCategory{
+export enum ServiceCategory {
   insurance,
   shopping,
   safety,
@@ -88,7 +88,7 @@ export interface Transaction {
   description: string;
   category: TransactionCategory;
   status: TransactionStatus;
-  destinationCardNumber:Card['CardNumber']
+  destinationCardNumber: Card['CardNumber'];
 
   /**
    * primary key
@@ -99,7 +99,7 @@ export interface Stoke {
   title: string;
   amount: number;
   return: number;
-  type:StockType;
+  type: StockType;
   id: string;
 }
 export interface Loan {
@@ -109,10 +109,10 @@ export interface Loan {
   interestRate: number;
   installment: number;
 }
-export interface Service{
-  title:string;
-  description:string;
-  category:ServiceCategory;
+export interface Service {
+  title: string;
+  description: string;
+  category: ServiceCategory;
 }
 export interface Profile {
   avatar: string;

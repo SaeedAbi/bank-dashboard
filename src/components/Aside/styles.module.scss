@@ -1,7 +1,7 @@
 $logo-height: 100px;
 
 .container {
-  @apply border-mainBg flex w-[230px] flex-shrink-0 flex-grow-0 flex-col border-r overflow-hidden;
+  @apply flex w-[230px] flex-shrink-0 flex-grow-0 flex-col overflow-hidden border-r border-mainBg;
 
   @supports (min-height: 100dvh) {
     min-height: 100dvh;
@@ -13,7 +13,7 @@ $logo-height: 100px;
   max-height: 100vh;
 
   .firstRow {
-    @apply flex h-[#{100px}] flex-shrink-0 flex-grow-0 items-center justify-center;
+    @apply h-[#{100px}] flex flex-shrink-0 flex-grow-0 items-center justify-center;
   }
 
   .secondRow {
@@ -26,8 +26,6 @@ $logo-height: 100px;
     min-height: calc(100vh - #{$logo-height});
     max-height: calc(100vh - #{$logo-height});
 
-    @apply overflow-y-auto ml-[44px] mt-[31px];
+    @apply ml-[44px] mt-[31px] overflow-y-auto;
   }
-
-
 }

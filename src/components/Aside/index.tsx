@@ -31,7 +31,7 @@ function Aside() {
         <ul className='flex flex-col gap-[42px]'>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.dashboard}
             >
               <FaHouse />
@@ -40,7 +40,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.transactions}
             >
               <FaMoneyBillTransfer />
@@ -49,7 +49,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.accounts}
             >
               <FaRegUser />
@@ -58,7 +58,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.investments}
             >
               <FaCoins />
@@ -67,7 +67,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.cards}
             >
               <FaCreditCard />
@@ -76,7 +76,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.loans}
             >
               <FaHandHoldingDollar />
@@ -85,7 +85,7 @@ function Aside() {
           </li>
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.services}
             >
               <FaToolbox />
@@ -103,7 +103,7 @@ function Aside() {
           {/*</li>*/}
           <li>
             <Link
-              className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'
+              className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'
               href={PRIVATE_ROUTES.settings}
             >
               <IoSettingsSharp height={25} width={25} />
