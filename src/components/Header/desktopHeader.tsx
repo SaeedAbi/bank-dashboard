@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Search from '@/components/Header/Search';
 import { Avatar, Button, Space } from 'antd';
 import { BellOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import Search from '@/components/Header/search';
 
 function DesktopHeader() {
   return (
