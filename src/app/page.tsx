@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import MyCards from '@/components/Main/Overview/MyCards';
 import RecentTransactions from '@/components/Main/Overview/RecentTransactions';

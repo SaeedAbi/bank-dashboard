@@ -2,12 +2,11 @@
 
 import * as React from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { usePathname } from 'next/navigation';
 
 import './global.css';
-import { usePathname } from 'next/navigation';
 import { PUBLIC_ROUTES } from '@/routes';
-import FullScreen from '@/components/FullScreen/FullScreen';
-import NotFullScreen from '@/components/NotFullScreen/NotFullScreen';
+import Content from '@/components/Content';
 
 export default function RootLayout({
   children,
@@ -21,14 +20,12 @@ export default function RootLayout({
   );
 
   return (
-    <AntdRegistry>
-      <html lang='en'>
-        {isFullScreen ? (
-          <FullScreen />
-        ) : (
-          <NotFullScreen>{children}</NotFullScreen>
-        )}
-      </html>
-    </AntdRegistry>
+    <html lang='en'>
+      <body>
+        <AntdRegistry>
+          {isFullScreen ? <div /> : <Content>{children}</Content>}
+        </AntdRegistry>
+      </body>
+    </html>
   );
 }
