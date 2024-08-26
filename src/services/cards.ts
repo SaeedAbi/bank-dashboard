@@ -22,7 +22,9 @@ export async function createCard(card: CardType): Promise<CardType | null> {
     cardDatabase.push(card);
     return card;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(
+      error instanceof Error ? error.message : 'Something went wrong'
+    );
   }
 }
 export async function getCardByNumber(
@@ -67,7 +69,9 @@ export async function updateCard(
     cardDatabase[cardIndex] = newCard;
     return newCard;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(
+      error instanceof Error ? error.message : 'Something went wrong'
+    );
   }
 }
 export async function deleteCard(cardNumber: string): Promise<boolean> {
