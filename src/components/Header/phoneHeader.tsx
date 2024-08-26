@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Avatar, Button, Space } from 'antd';
 import { MenuOutlined, UserOutlined } from '@ant-design/icons';
-import Search from '@/components/Header/Search';
+import Search from '@/components/Header/search';
 
 function PhoneHeader() {
   return (
