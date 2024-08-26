@@ -22,26 +22,26 @@ export enum StockType {
 //=============================================
 // Interface
 //=============================================
-export interface CurrencyType{
-  id:string;
-  label:string;
-  symbol:string;
+export interface CurrencyType {
+  id: string;
+  label: string;
+  symbol: string;
 }
-export interface InventoryType{
-  id:number;
-  label:string;
+export interface InventoryType {
+  id: number;
+  label: string;
 }
-export interface BankType{
-  id:number;
-  label:string;
-  abbreviation:string;
+export interface BankType {
+  id: number;
+  label: string;
+  abbreviation: string;
 }
 export interface StokeType {
   id: number;
   label: string;
   amount: number;
   return: number;
-  type:StockType;
+  type: StockType;
 }
 export interface LoanType {
   total: number;
@@ -50,10 +50,10 @@ export interface LoanType {
   interestRate: number;
   installment: number;
 }
-export interface ServiceType{
-  id:number;
-  label:string;
-  description:string;
+export interface ServiceType {
+  id: number;
+  label: string;
+  description: string;
 }
 export interface ProfileType {
   avatar: string;
@@ -114,5 +114,5 @@ export interface TransactionType {
   description?: string;
   category: InventoryType['id'];
   status: TransactionStatus;
-  destinationCardNumber:CardType['cardNumber']
+  destinationCardNumber: CardType['cardNumber'];
 }

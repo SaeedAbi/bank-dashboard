@@ -1,16 +1,20 @@
 import {
-    BankType,
-    CurrencyType,
-    InventoryType, LoanType,
-    ServiceType, StockType, StokeType,
+  BankType,
+  CurrencyType,
+  InventoryType,
+  LoanType,
+  ServiceType,
+  StokeType,
 } from '@/interfaces';
 import {
-    banks,
-    categories,
-    creditCards,
-    currencies, loans,
-    positions,
-    services, stocks,
+  banks,
+  categories,
+  creditCards,
+  currencies,
+  loans,
+  positions,
+  services,
+  stocks,
 } from '@/db';
 
 export async function getAllCurrencies(): Promise<CurrencyType[]> {
@@ -32,8 +36,8 @@ export async function getAllServices(): Promise<ServiceType[]> {
   return services;
 }
 export async function getAllLoans(): Promise<LoanType[]> {
-    return loans;
+  return loans;
 }
 export async function getAllStocks(): Promise<StokeType[]> {
-    return stocks;
+  return stocks;
 }
