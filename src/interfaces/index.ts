@@ -1,17 +1,7 @@
 //=============================================
 // enum
 //=============================================
-export enum Currency {
-  USD,
-  Euro,
-  Pound,
-}
-export enum Position {
-  CEO,
-  director,
-  designer,
-}
-export enum TransactionType {
+export enum ActionType {
   withdraw,
   deposit,
 }
@@ -19,108 +9,59 @@ export enum TransactionMethod {
   paypal,
   physical,
 }
-export enum TransactionCategory {
-  entertainment,
-  bill,
-  investment,
-  grocery,
-  travel,
-  shopping,
-}
 export enum TransactionStatus {
   rejected,
   complete,
   pending,
 }
-export enum BankName {
-  DBL,
-  BRC,
-  ABM,
-  MCP,
-}
-export enum CartType {
-  gift,
-  physical,
-  virtual,
-  others
-}
 export enum StockType {
   positive,
   negative,
 }
-export enum ServiceCategory{
-  insurance,
-  shopping,
-  safety,
-}
+
 //=============================================
 // Interface
 //=============================================
-export interface Card {
-  balance: number;
-  holder: User['id'];
-  cardType: CartType;
-  bank: BankName;
-
-  /**
-   * primary key
-   */
-  CardNumber: string;
-  expireDate: Date;
+export interface CurrencyType{
+  id:string;
+  label:string;
+  symbol:string;
 }
-export interface User {
-  avatar: string; //file address
-  fullName: string;
-  position: Position;
-
-  /**
-   * primary key
-   */
-  id: string;
-  cards: Card['CardNumber'][];
+export interface InventoryType{
+  id:number;
+  label:string;
 }
-export interface Transaction {
-  title: string;
-  date: Date;
-  amount: number;
-  type: TransactionType;
-  method: TransactionMethod;
-  description: string;
-  category: TransactionCategory;
-  status: TransactionStatus;
-  destinationCardNumber:Card['CardNumber']
-
-  /**
-   * primary key
-   */
-  id: string;
+export interface BankType{
+  id:number;
+  label:string;
+  abbreviation:string;
 }
-export interface Stoke {
-  title: string;
+export interface StokeType {
+  id: number;
+  label: string;
   amount: number;
   return: number;
   type:StockType;
-  id: string;
 }
-export interface Loan {
+export interface LoanType {
   total: number;
   paid: number;
   duration: number;
   interestRate: number;
   installment: number;
 }
-export interface Service{
-  title:string;
+export interface ServiceType{
+  id:number;
+  label:string;
   description:string;
-  category:ServiceCategory;
 }
-export interface Profile {
+export interface ProfileType {
   avatar: string;
   fullName: string;
   userName: string;
   email: string;
   password: string;
-  birthDate: Date;
+  birthDate: string;
   presentAddress?: string;
   permanentAddress?: string;
   city?: string;
@@ -130,6 +71,48 @@ export interface Profile {
   isSendingDigitalCurrency: boolean;
   isReceiveMerchantOrder: boolean;
   isRecommendationAccount: boolean;
-  timeZone?: string; //
+  timeZone?: string;
   isTwoFactorAuth: boolean;
+}
+export interface UserType {
+  /**
+   * primary key
+   */
+  id: number;
+  avatar?: string;
+  fullName: string;
+  position: InventoryType['id'];
+  /**
+   * each user can have a multiple cards
+   */
+  cards: CardType['cardNumber'][];
+}
+export interface CardType {
+  /**
+   * primary key
+   */
+  cardNumber: string;
+  balance: number;
+  holder: UserType['id'];
+  /**
+   * credit card's type
+   */
+  type: InventoryType['id'];
+  bank: BankType['id'];
+  expireDate: string;
+}
+export interface TransactionType {
+  /**
+   * primary key
+   */
+  id: string;
+  label: string;
+  date: string;
+  amount: number;
+  type: ActionType;
+  method: TransactionMethod;
+  description?: string;
+  category: InventoryType['id'];
+  status: TransactionStatus;
+  destinationCardNumber:CardType['cardNumber']
 }
