@@ -1,0 +1,11 @@
+@import '../../styles/variable';
+
+.container {
+  @supports (width: 100dvw) {
+    min-width: calc(100dvw - $aside-width);
+    max-width: calc(100dvw - $aside-width);
+  }
+  min-width: calc(100vw - $aside-width);
+  max-width: calc(100vw - $aside-width);
+  @apply overflow-x-hidden;
+}
