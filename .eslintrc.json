@@ -10,9 +10,10 @@
     "eslint:recommended",
     "plugin:@next/next/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
   ],
-  "plugins": ["prettier", "@typescript-eslint"],
+  "plugins": ["prettier", "@typescript-eslint", "react-hooks"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -22,7 +23,9 @@
   },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn"
   },
 
   "parser": "@typescript-eslint/parser",
