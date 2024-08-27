@@ -1,6 +1,7 @@
 import React from 'react';
 
 import useInventory from '@/hooks/useInventory';
+import { hideLoading, registerLoading } from '@/utils/loading';
 
 interface Props {
   isPublicRoute: boolean;
@@ -12,7 +13,19 @@ function Inventory({
   isAuthenticated,
   isPublicRoute,
 }: React.PropsWithChildren<Props>) {
-  useInventory(isAuthenticated && !isPublicRoute);
+  const results = useInventory(isAuthenticated && !isPublicRoute);
+  const loading = results.some(({ isLoading }) => isLoading);
+
+  // TBD
+  const error = results.some(({ isError }) => isError);
+
+  React.useEffect(() => {
+    if (loading) {
+      registerLoading();
+    } else {
+      hideLoading();
+    }
+  }, [loading]);
 
   return children;
 }

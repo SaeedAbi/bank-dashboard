@@ -10,47 +10,62 @@ import {
   getAllStocks,
 } from '@/services/inventories';
 
+//=============================================
+// Keys
+//=============================================
+export const POSITIONS_KEY = 'POSITIONS_KEY';
+export const CURRENCIES_KEY = 'CURRENCIES_KEY';
+export const BANKS_KEY = 'BANKS_KEY';
+export const CATEGORIES_KEY = 'CATEGORIES_KEY';
+export const CREDIT_CARDS_KEY = 'CREDIT_CARDS_KEY';
+export const SERVICES_KEY = 'SERVICES_KEY';
+export const LOANS_KEY = 'LOANS_KEY';
+export const STOCKS_KEY = 'STOCKS_KEY';
+
+//=============================================
+// Queries
+//=============================================
 const commonQuery = {
   staleTime: Infinity,
   cacheTime: Infinity,
 };
-const positionQuery = {
-  queryKey: ['positions'],
+const positionsQuery = {
+  queryKey: [POSITIONS_KEY],
   queryFn: getAllPositions,
   ...commonQuery,
 };
-const currencyQuery = {
-  queryKey: ['currencies'],
+const currenciesQuery = {
+  queryKey: [CURRENCIES_KEY],
   queryFn: getAllCurrencies,
   ...commonQuery,
 };
-const bankQuery = {
-  queryKey: ['banks'],
+const banksQuery = {
+  queryKey: [BANKS_KEY],
   queryFn: getAllBanks,
   ...commonQuery,
 };
-const categoryQuery = {
-  queryKey: ['categories'],
+const categoriesQuery = {
+  queryKey: [CATEGORIES_KEY],
   queryFn: getAllCategories,
   ...commonQuery,
 };
-const creditCardQuery = {
-  queryKey: ['creditCards'],
+const creditCardsQuery = {
+  queryKey: [CREDIT_CARDS_KEY],
   queryFn: getAllCreditCards,
   ...commonQuery,
 };
-const serviceQuery = {
-  queryKey: ['services'],
+const servicesQuery = {
+  queryKey: [SERVICES_KEY],
   queryFn: getAllServices,
   ...commonQuery,
 };
-const loanQuery = {
-  queryKey: ['loans'],
+const loansQuery = {
+  queryKey: [LOANS_KEY],
   queryFn: getAllLoans,
   ...commonQuery,
 };
-const stockQuery = {
-  queryKey: ['stock'],
+const stocksQuery = {
+  queryKey: [STOCKS_KEY],
   queryFn: getAllStocks,
   ...commonQuery,
 };
@@ -58,14 +73,14 @@ const stockQuery = {
 export default function useInventory(enabled: boolean) {
   return useQueries({
     queries: [
-      { enabled, ...positionQuery },
-      { enabled, ...currencyQuery },
-      { enabled, ...categoryQuery },
-      { enabled, ...bankQuery },
-      { enabled, ...creditCardQuery },
-      { enabled, ...serviceQuery },
-      { enabled, ...loanQuery },
-      { enabled, ...stockQuery },
+      { enabled, ...positionsQuery },
+      { enabled, ...currenciesQuery },
+      { enabled, ...categoriesQuery },
+      { enabled, ...banksQuery },
+      { enabled, ...creditCardsQuery },
+      { enabled, ...servicesQuery },
+      { enabled, ...loansQuery },
+      { enabled, ...stocksQuery },
     ],
   });
 }
