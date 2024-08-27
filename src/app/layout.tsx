@@ -9,13 +9,7 @@ import Content from '@/components/Content';
 import Authentication from '@/components/Autentication';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -27,7 +21,7 @@ export default function RootLayout({
       <body>
         <AntdRegistry>
           <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />{' '}
+            <ReactQueryDevtools initialIsOpen={false} />
             <Authentication>
               <Content>{children}</Content>
             </Authentication>
