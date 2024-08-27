@@ -28,6 +28,7 @@ export const STOCKS_KEY = 'STOCKS_KEY';
 const commonQuery = {
   staleTime: Infinity,
   cacheTime: Infinity,
+  throwOnError: false,
 };
 const positionsQuery = {
   queryKey: [POSITIONS_KEY],
