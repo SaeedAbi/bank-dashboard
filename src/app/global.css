@@ -7,3 +7,18 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+#initial-loading {
+  background-color: #303030;
+  width: 100vw;
+  height: 100vh;
+  @apply flex items-center justify-center;
+}
+
+#initial-loading > svg {
+  width: 120px;
+  height: 120px;
+}
+#initial-loading.hide {
+  display: none;
+}
