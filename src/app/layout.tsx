@@ -2,13 +2,20 @@
 
 import * as React from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { usePathname } from 'next/navigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './global.css';
-import { PUBLIC_ROUTES } from '@/routes';
 import Content from '@/components/Content';
 import Authentication from '@/components/Autentication';
-import Inventory from '@/components/Inventroty';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 export default function RootLayout({
   children,
@@ -19,9 +26,12 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <AntdRegistry>
-          <Authentication>
-            <Content>{children}</Content>
-          </Authentication>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />{' '}
+            <Authentication>
+              <Content>{children}</Content>
+            </Authentication>
+          </QueryClientProvider>
         </AntdRegistry>
       </body>
     </html>
