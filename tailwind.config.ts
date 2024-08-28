@@ -33,6 +33,7 @@ const config: Config = {
         textBlue: '#718EBF',
         deposit: '#FF4B4A',
         withdraw: '#41D4A8',
+        darkBlue:'#0A06F4'
       },
     },
   },
