@@ -5,6 +5,7 @@ import * as React from 'react';
 import MyCards from '@/components/Main/Overview/MyCards';
 import RecentTransactions from '@/components/Main/Overview/RecentTransactions';
 import WeeklyActivities from '@/components/Main/Overview/WeeklyActivities';
+import ExpenseStatistics from '@/components/Main/Overview/ExpenseStatistics';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <MyCards />
         <RecentTransactions />
         <WeeklyActivities />
+        <ExpenseStatistics />
       </div>
     </main>
   );
