@@ -1,9 +1,9 @@
-@import "../../styles/variable";
+@import '../../styles/variable';
 
 $logo-height: 100px;
 
 .container {
-  @apply flex w-[#{$aside-width}] flex-shrink-0 flex-grow-0 flex-col overflow-hidden border-r border-mainBg;
+  @apply w-[#{$aside-width}] flex flex-shrink-0 flex-grow-0 flex-col overflow-hidden border-r border-mainBg;
 
   @supports (min-height: 100dvh) {
     min-height: 100dvh;

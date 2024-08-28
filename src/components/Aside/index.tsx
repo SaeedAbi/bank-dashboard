@@ -92,15 +92,6 @@ function Aside() {
               <span>Services</span>
             </Link>
           </li>
-          {/*<li>*/}
-          {/*  <Link*/}
-          {/*    className='text-secondary flex items-center gap-[26px] text-lg font-medium hover:text-primary'*/}
-          {/*    href='../../app/services/page.tsx'*/}
-          {/*  >*/}
-          {/*    <FaCircleDollarToSlot />*/}
-          {/*    <span>My Privileges</span>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
           <li>
             <Link
               className='text-lg flex items-center gap-[26px] font-medium text-secondary hover:text-primary'

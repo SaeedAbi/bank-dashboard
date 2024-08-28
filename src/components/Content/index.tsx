@@ -16,9 +16,9 @@ function Content({ children }: React.PropsWithChildren) {
   );
 
   return (
-    <div className='flex'>
+    <div className='flex max-h-[100vh] overflow-hidden'>
       {isFullScreen ? null : <Aside />}
-      <div className='flex flex-shrink flex-grow flex-col'>
+      <div className='flex flex-col'>
         {isFullScreen ? null : <Header />}
         <div className={styles.container}>{children}</div>
       </div>

@@ -6,13 +6,11 @@ import RecentTransactions from '@/components/Main/Overview/RecentTransactions';
 
 export default function Home() {
   return (
-    <main>
-      <section className='mx-10'>
-        <div className='flex flex-wrap gap-[30px]'>
-          <MyCards />
-          <RecentTransactions />
-        </div>
-      </section>
+    <main className='mx-10'>
+      <div className='flex flex-wrap gap-[30px] overflow-auto'>
+        <MyCards />
+        <RecentTransactions />
+      </div>
     </main>
   );
 }
