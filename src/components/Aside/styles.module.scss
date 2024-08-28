@@ -28,6 +28,6 @@ $logo-height: 100px;
     min-height: calc(100vh - #{$logo-height});
     max-height: calc(100vh - #{$logo-height});
 
-    @apply ml-[44px] mt-[31px] overflow-y-auto;
+    @apply mt-[31px] overflow-y-auto;
   }
 }
