@@ -1,8 +1,10 @@
 'use client';
 
 import * as React from 'react';
+
 import MyCards from '@/components/Main/Overview/MyCards';
 import RecentTransactions from '@/components/Main/Overview/RecentTransactions';
+import WeeklyActivities from '@/components/Main/Overview/WeeklyActivities';
 
 export default function Home() {
   return (
@@ -10,6 +12,7 @@ export default function Home() {
       <div className='flex flex-wrap gap-[30px] overflow-auto'>
         <MyCards />
         <RecentTransactions />
+        <WeeklyActivities />
       </div>
     </main>
   );
