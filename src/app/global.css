@@ -19,6 +19,7 @@ body {
   width: 120px;
   height: 120px;
 }
+
 #initial-loading.hide {
   display: none;
 }

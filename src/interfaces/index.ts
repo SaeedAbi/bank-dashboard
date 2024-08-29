@@ -81,11 +81,11 @@ export interface UserType {
   id: number;
   avatar?: string;
   fullName: string;
-  position: InventoryType['id'];
+  position: InventoryType["id"];
   /**
    * each user can have a multiple cards
    */
-  cards: CardType['cardNumber'][];
+  cards: CardType["cardNumber"][];
 }
 export interface CardType {
   /**
@@ -93,12 +93,12 @@ export interface CardType {
    */
   cardNumber: string;
   balance: number;
-  holder: UserType['id'];
+  holder: UserType["id"];
   /**
    * credit card's type
    */
-  type: InventoryType['id'];
-  bank: BankType['id'];
+  type: InventoryType["id"];
+  bank: BankType["id"];
   expireDate: string;
 }
 export interface TransactionType {
@@ -112,7 +112,7 @@ export interface TransactionType {
   type: ActionType;
   method: TransactionMethod;
   description?: string;
-  category: InventoryType['id'];
+  category: InventoryType["id"];
   status: TransactionStatus;
-  destinationCardNumber: CardType['cardNumber'];
+  destinationCardNumber: CardType["cardNumber"];
 }

@@ -1,5 +1,5 @@
 export function debounce(fn: (...args: unknown[]) => void, delay: number) {
-  let timerId: ReturnType<Window['setTimeout']>;
+  let timerId: ReturnType<Window["setTimeout"]>;
 
   return (...args: unknown[]) => {
     window.clearTimeout(timerId);
@@ -7,7 +7,7 @@ export function debounce(fn: (...args: unknown[]) => void, delay: number) {
   };
 }
 export function isServer(): boolean {
-  return typeof window === 'undefined';
+  return typeof window === "undefined";
 }
 
 // amount in `ms`

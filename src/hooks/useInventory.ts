@@ -1,4 +1,4 @@
-import { useQueries } from '@tanstack/react-query';
+import { useQueries } from "@tanstack/react-query";
 import {
   getAllBanks,
   getAllCategories,
@@ -8,19 +8,19 @@ import {
   getAllPositions,
   getAllServices,
   getAllStocks,
-} from '@/services/inventories';
+} from "@/services/inventories";
 
 //=============================================
 // Keys
 //=============================================
-export const POSITIONS_KEY = 'POSITIONS_KEY';
-export const CURRENCIES_KEY = 'CURRENCIES_KEY';
-export const BANKS_KEY = 'BANKS_KEY';
-export const CATEGORIES_KEY = 'CATEGORIES_KEY';
-export const CREDIT_CARDS_KEY = 'CREDIT_CARDS_KEY';
-export const SERVICES_KEY = 'SERVICES_KEY';
-export const LOANS_KEY = 'LOANS_KEY';
-export const STOCKS_KEY = 'STOCKS_KEY';
+export const POSITIONS_KEY = "POSITIONS_KEY";
+export const CURRENCIES_KEY = "CURRENCIES_KEY";
+export const BANKS_KEY = "BANKS_KEY";
+export const CATEGORIES_KEY = "CATEGORIES_KEY";
+export const CREDIT_CARDS_KEY = "CREDIT_CARDS_KEY";
+export const SERVICES_KEY = "SERVICES_KEY";
+export const LOANS_KEY = "LOANS_KEY";
+export const STOCKS_KEY = "STOCKS_KEY";
 
 //=============================================
 // Queries

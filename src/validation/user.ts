@@ -1,5 +1,5 @@
-import * as Yup from 'yup';
-import { cardNumberValidation } from '@/validation/common';
+import * as Yup from "yup";
+import { cardNumberValidation } from "@/validation/common";
 
 // validation schema for UserType
 export const userSchema = Yup.object().shape({

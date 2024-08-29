@@ -1,6 +1,6 @@
-import { CardType } from '@/interfaces';
-import { cardSchema } from '@/validation/card';
-import { cards } from '@/db';
+import { CardType } from "@/interfaces";
+import { cardSchema } from "@/validation/card";
+import { cards } from "@/db";
 
 // in-memory database
 let cardDatabase: CardType[] = [...cards];
@@ -16,14 +16,14 @@ export async function createCard(card: CardType): Promise<CardType | null> {
         (existingCard) => existingCard.cardNumber === card.cardNumber
       )
     ) {
-      throw new Error('Card number already exists.');
+      throw new Error("Card number already exists.");
     }
 
     cardDatabase.push(card);
     return card;
   } catch (error) {
     throw new Error(
-      error instanceof Error ? error.message : 'Something went wrong'
+      error instanceof Error ? error.message : "Something went wrong"
     );
   }
 }
@@ -33,7 +33,7 @@ export async function getCardByNumber(
   const card = cardDatabase.find((card) => card.cardNumber === cardNumber);
 
   if (!card) {
-    throw new Error('Card not found.');
+    throw new Error("Card not found.");
   }
 
   return card;
@@ -48,7 +48,7 @@ export async function updateCard(
   try {
     // validate updated card data
     if (updatedCard.cardNumber && updatedCard.cardNumber !== cardNumber) {
-      throw new Error('Card number cannot be updated.');
+      throw new Error("Card number cannot be updated.");
     }
 
     // find the card to update
@@ -56,7 +56,7 @@ export async function updateCard(
       (card) => card.cardNumber === cardNumber
     );
     if (cardIndex === -1) {
-      throw new Error('Card not found.');
+      throw new Error("Card not found.");
     }
 
     // merge updated card data
@@ -70,7 +70,7 @@ export async function updateCard(
     return newCard;
   } catch (error) {
     throw new Error(
-      error instanceof Error ? error.message : 'Something went wrong'
+      error instanceof Error ? error.message : "Something went wrong"
     );
   }
 }
@@ -79,7 +79,7 @@ export async function deleteCard(cardNumber: string): Promise<boolean> {
     (card) => card.cardNumber === cardNumber
   );
   if (cardIndex === -1) {
-    throw new Error('Card not found.');
+    throw new Error("Card not found.");
   }
 
   // card deleted successfully
@@ -88,7 +88,7 @@ export async function deleteCard(cardNumber: string): Promise<boolean> {
 }
 // this util function is being used only in test environment
 export async function dbReset() {
-  if (typeof process !== 'undefined' && process.env.NODE_ENV === 'test') {
+  if (typeof process !== "undefined" && process.env.NODE_ENV === "test") {
     cardDatabase = [];
   }
 }

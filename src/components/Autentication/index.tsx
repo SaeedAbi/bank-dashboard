@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '@/routes';
-import Inventory from '@/components/Inventroty';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "@/routes";
+import Inventory from "@/components/Inventroty";
 
 function Authentication({ children }: React.PropsWithChildren) {
   const pathname = usePathname();

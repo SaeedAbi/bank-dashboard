@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { debounce, isServer } from '@/utils/helper';
+import * as React from "react";
+import { debounce, isServer } from "@/utils/helper";
 
 export const MOBILE_BREAKPOINT = 800;
 interface WindowSizeType {
@@ -39,10 +39,10 @@ export function useWindowSize(): WindowSizeType {
   );
 
   React.useEffect(() => {
-    window.addEventListener('resize', debouncedCalculation);
+    window.addEventListener("resize", debouncedCalculation);
 
     return () => {
-      window.removeEventListener('resize', debouncedCalculation);
+      window.removeEventListener("resize", debouncedCalculation);
     };
   }, [debouncedCalculation]);
 

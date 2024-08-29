@@ -5,7 +5,7 @@ import {
   LoanType,
   ServiceType,
   StokeType,
-} from '@/interfaces';
+} from "@/interfaces";
 import {
   banks,
   categories,
@@ -15,8 +15,8 @@ import {
   positions,
   services,
   stocks,
-} from '@/db';
-import { randomDelayForAPIServices, sleep } from '@/utils/helper';
+} from "@/db";
+import { randomDelayForAPIServices } from "@/utils/helper";
 
 export async function getAllCurrencies(): Promise<CurrencyType[]> {
   await randomDelayForAPIServices();

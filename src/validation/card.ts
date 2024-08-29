@@ -1,5 +1,5 @@
-import * as Yup from 'yup';
-import { cardNumberValidation, dateValidation } from '@/validation/common';
+import * as Yup from "yup";
+import { cardNumberValidation, dateValidation } from "@/validation/common";
 
 // validation schema for CardType
 export const cardSchema = Yup.object().shape({

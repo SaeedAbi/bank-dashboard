@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import useInventory from '@/hooks/useInventory';
-import { hideLoading, registerLoading } from '@/utils/loading';
+import useInventory from "@/hooks/useInventory";
+import { hideLoading, registerLoading } from "@/utils/loading";
 
 interface Props {
   isPublicRoute: boolean;
@@ -29,7 +29,7 @@ function Inventory({
     }
   }, [loading]);
 
-  return children;
+  return <>{children}</>;
 }
 
 export default Inventory;

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { useWindowSize } from '@/hooks/helpers';
+import * as React from "react";
+import { useWindowSize } from "@/hooks/helpers";
 
-import DesktopHeader from '@/components/Header/desktopHeader';
-import PhoneHeader from '@/components/Header/phoneHeader';
+import DesktopHeader from "@/components/Header/desktopHeader";
+import PhoneHeader from "@/components/Header/phoneHeader";
 
 function Header() {
   const { isMobile } = useWindowSize();
