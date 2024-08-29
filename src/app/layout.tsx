@@ -5,8 +5,9 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "./global.css";
-import Content from "@/components/Content";
 import Authentication from "@/components/Autentication";
+import Content from "@/components/Content";
+import ServiceWorker from "@/components/ServiceWorker";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
@@ -47,9 +48,11 @@ export default function RootLayout({
         <AntdRegistry>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} />
-            <Authentication>
-              <Content>{children}</Content>
-            </Authentication>
+            <ServiceWorker>
+              <Authentication>
+                <Content>{children}</Content>
+              </Authentication>
+            </ServiceWorker>
           </QueryClientProvider>
         </AntdRegistry>
       </body>

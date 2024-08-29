@@ -16,8 +16,3 @@ export async function sleep(delay: number) {
     setTimeout(resolve, delay);
   });
 }
-
-export async function randomDelayForAPIServices() {
-  const randomNumber = Math.random();
-  return sleep(randomNumber * 2 + 1);
-}
