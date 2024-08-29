@@ -90,11 +90,11 @@ function WeeklyActivities() {
     },
   };
   return (
-    <div>
+    <div className='mt-6'>
       <div className='text-3xl font-semibold text-primary'>
         Weekly Activities
       </div>
-      <Column width={730} height={322} {...config} />
+      <Column className={"mt-5 rounded-[25px] bg-white"} width={730} height={322} {...config} />
     </div>
   );
 }

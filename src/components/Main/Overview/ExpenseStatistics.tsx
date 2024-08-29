@@ -21,9 +21,14 @@ function ExpenseStatistics() {
   };
 
   return (
-    <div>
+    <div className='mt-6'>
       <div className='text-3xl font-semibold text-primary'>Expense Statics</div>
-      <Pie width={350} height={322} {...config} />;
+      <Pie
+        className={'mt-5 rounded-[25px] bg-white'}
+        width={350}
+        height={322}
+        {...config}
+      />
     </div>
   );
 }
