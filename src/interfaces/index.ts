@@ -14,7 +14,7 @@ export enum TransactionStatus {
   complete,
   pending,
 }
-export enum StockType {
+export enum ReturnType {
   positive,
   negative,
 }
@@ -36,12 +36,12 @@ export interface BankType {
   label: string;
   abbreviation: string;
 }
-export interface StokeType {
+export interface StockType {
   id: number;
   label: string;
   amount: number;
   return: number;
-  type: StockType;
+  type: ReturnType;
 }
 export interface LoanType {
   total: number;

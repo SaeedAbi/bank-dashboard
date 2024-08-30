@@ -4,7 +4,7 @@ import {
   InventoryType,
   LoanType,
   ServiceType,
-  StokeType,
+  StockType,
 } from "@/interfaces";
 import {
   banks,
@@ -38,6 +38,6 @@ export async function getAllServices(): Promise<ServiceType[]> {
 export async function getAllLoans(): Promise<LoanType[]> {
   return loans;
 }
-export async function getAllStocks(): Promise<StokeType[]> {
+export async function getAllStocks(): Promise<StockType[]> {
   return stocks;
 }
