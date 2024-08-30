@@ -5,7 +5,7 @@ import { cards } from "@/db";
 // in-memory database
 let cardDatabase: CardType[] = [...cards];
 
-export async function createCard(card: CardType): Promise<CardType | null> {
+export async function createCard(card: CardType): Promise<CardType> {
   try {
     // validate card data
     await cardSchema.validate(card);
@@ -27,9 +27,7 @@ export async function createCard(card: CardType): Promise<CardType | null> {
     );
   }
 }
-export async function getCardByNumber(
-  cardNumber: string
-): Promise<CardType | null> {
+export async function getCardByNumber(cardNumber: string): Promise<CardType> {
   const card = cardDatabase.find((card) => card.cardNumber === cardNumber);
 
   if (!card) {
@@ -44,7 +42,7 @@ export async function getAllCards(): Promise<CardType[]> {
 export async function updateCard(
   cardNumber: string,
   updatedCard: Partial<CardType>
-): Promise<CardType | null> {
+): Promise<CardType> {
   try {
     // validate updated card data
     if (updatedCard.cardNumber && updatedCard.cardNumber !== cardNumber) {
