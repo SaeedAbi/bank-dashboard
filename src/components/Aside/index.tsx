@@ -101,7 +101,7 @@ function Aside() {
                     'text-lg flex items-center gap-[26px] border-l-[6px] border-l-white py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary',
                     {
                       ['border-l-[6px] border-l-darkBlue text-primary']:
-                        isActive:a(),
+                        a(),
                     }
                   )}
                   href={link.href}
