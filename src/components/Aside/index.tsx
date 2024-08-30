@@ -18,7 +18,8 @@ import {
 import logo from '../../../public/Logo.png';
 import styles from './styles.module.scss';
 import { PRIVATE_ROUTES } from '@/routes';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import classNames from 'classnames';
 
 const links = [
   {
@@ -66,6 +67,7 @@ const links = [
 function Aside() {
   const { isMobile } = useWindowSize();
   const router = useRouter();
+  const pathName = usePathname();
 
   return isMobile ? null : (
     <aside className={styles.container}>
@@ -81,10 +83,23 @@ function Aside() {
       <nav className={styles.secondRow}>
         <ul className='flex flex-col'>
           {links.map((link) => {
+            let isActive = false;
+            if (link.href === PRIVATE_ROUTES.dashboard) {
+              isActive = pathName === PRIVATE_ROUTES.dashboard;
+            } else {
+              isActive = pathName.startsWith(link.href);
+            }
+
             return (
               <li key={link.label}>
                 <Link
-                  className='text-lg flex items-center gap-[26px] py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary'
+                  className={classNames(
+                    'text-lg flex items-center gap-[26px] border-l-[6px] border-l-white py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary',
+                    {
+                      ['border-l-[6px] border-l-darkBlue text-primary']:
+                        isActive,
+                    }
+                  )}
                   href={link.href}
                 >
                   {link.icon}
