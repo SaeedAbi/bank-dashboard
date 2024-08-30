@@ -13,15 +13,15 @@ export default function Home() {
   return (
     <main className='bg-mainBg'>
       <div className='mx-10 flex flex-wrap overflow-auto'>
-        <div className={'flex gap-[30px] flex-wrap'}>
+        <div className={'flex flex-wrap gap-[30px]'}>
           <MyCards />
           <RecentTransactions />
         </div>
-        <div className={'flex gap-[30px] flex-wrap'}>
+        <div className={'flex flex-wrap gap-[30px]'}>
           <WeeklyActivities />
           <ExpenseStatistics />
         </div>
-        <div className={'flex gap-[30px] flex-wrap'}>
+        <div className={'flex flex-wrap gap-[30px]'}>
           <QuickTransfer />
           <BalanceHistory />
         </div>

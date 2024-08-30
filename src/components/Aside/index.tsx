@@ -18,6 +18,7 @@ import {
 import logo from '../../../public/Logo.png';
 import styles from './styles.module.scss';
 import { PRIVATE_ROUTES } from '@/routes';
+import { useRouter } from 'next/navigation';
 
 const links = [
   {
@@ -64,11 +65,18 @@ const links = [
 
 function Aside() {
   const { isMobile } = useWindowSize();
+  const router = useRouter();
 
   return isMobile ? null : (
     <aside className={styles.container}>
       <div className={styles.firstRow}>
-        <Image src={logo} alt='logo image' width={183} height={36} />
+        <Image
+          src={logo}
+          alt='logo image'
+          width={183}
+          height={36}
+          onClick={() => router.push(PRIVATE_ROUTES.dashboard)}
+        />
       </div>
       <nav className={styles.secondRow}>
         <ul className='flex flex-col'>
@@ -76,7 +84,7 @@ function Aside() {
             return (
               <li key={link.label}>
                 <Link
-                  className='text-lg hover:border-l-darkBlue flex items-center gap-[26px] py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:text-primary'
+                  className='text-lg flex items-center gap-[26px] py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary'
                   href={link.href}
                 >
                   {link.icon}
