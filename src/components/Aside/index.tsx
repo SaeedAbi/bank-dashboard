@@ -83,11 +83,15 @@ function Aside() {
       <nav className={styles.secondRow}>
         <ul className='flex flex-col'>
           {links.map((link) => {
-            let isActive = false;
-            if (link.href === PRIVATE_ROUTES.dashboard) {
-              isActive = pathName === PRIVATE_ROUTES.dashboard;
-            } else {
-              isActive = pathName.startsWith(link.href);
+            function a(){
+              let isActive: boolean;
+              if (link.href === PRIVATE_ROUTES.dashboard) {
+                isActive = pathName === PRIVATE_ROUTES.dashboard;
+              } else {
+                isActive = pathName.startsWith(link.href);
+              }
+
+              return isActive;
             }
 
             return (
@@ -97,7 +101,7 @@ function Aside() {
                     'text-lg flex items-center gap-[26px] border-l-[6px] border-l-white py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary',
                     {
                       ['border-l-[6px] border-l-darkBlue text-primary']:
-                        isActive,
+                        isActive:a(),
                     }
                   )}
                   href={link.href}
