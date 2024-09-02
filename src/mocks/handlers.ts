@@ -17,6 +17,8 @@ import {
   LoanType,
   ServiceType,
   StockType,
+  TransactionType,
+  UserType,
 } from "@/interfaces";
 import {
   createCard,
@@ -25,6 +27,20 @@ import {
   getCardByNumber,
   updateCard,
 } from "@/services/cards";
+import {
+  createUser,
+  deleteUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+} from "@/services/users";
+import {
+  createTransaction,
+  deleteTransaction,
+  getAllTransactions,
+  getTransactionById,
+  updateTransaction,
+} from "@/services/transactions";
 
 interface ErrorMessageType {
   message: string;
@@ -103,6 +119,56 @@ export const handlers = [
       }
     }
   ),
+  rest.get<never, never, UserType[]>(`/users`, async (req, res, ctx) => {
+    const users = await getAllUsers();
+    return res(ctx.delay(delay()), ctx.json(users));
+  }),
+  rest.get<never, { id: string }, UserType | ErrorMessageType>(
+    `/users/:id`,
+    async (req, res, ctx) => {
+      try {
+        const { id } = req.params;
+        const user = await getUserById(Number(id));
+        return res(ctx.delay(delay()), ctx.json(user));
+      } catch (error) {
+        return res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message:
+              error instanceof Error ? error.message : "Something went wrong",
+          })
+        );
+      }
+    }
+  ),
+  rest.get<never, never, TransactionType[]>(
+    `/transactions`,
+    async (_req, res, ctx) => {
+      const transactions = await getAllTransactions();
+      return res(ctx.delay(delay()), ctx.json(transactions));
+    }
+  ),
+  rest.get<
+    never,
+    { id: TransactionType["id"] },
+    TransactionType | ErrorMessageType
+  >(`/transactions/:id`, async (req, res, ctx) => {
+    try {
+      const { id } = req.params;
+      const transaction = await getTransactionById(id);
+      return res(ctx.delay(delay()), ctx.json(transaction));
+    } catch (error) {
+      return res(
+        ctx.delay(delay()),
+        ctx.status(422),
+        ctx.json({
+          message:
+            error instanceof Error ? error.message : "Something went wrong",
+        })
+      );
+    }
+  }),
 
   // =========================================
   // POST
@@ -126,11 +192,49 @@ export const handlers = [
       }
     }
   ),
+  rest.post<UserType, never, UserType | ErrorMessageType>(
+    `/users`,
+    async (req, res, ctx) => {
+      try {
+        const body = await req.json<UserType>();
+        const user = await createUser(body);
+        return res(ctx.delay(delay()), ctx.json(user));
+      } catch (error) {
+        return res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message:
+              error instanceof Error ? error.message : "Something went wrong",
+          })
+        );
+      }
+    }
+  ),
+  rest.post<TransactionType, never, TransactionType | ErrorMessageType>(
+    `/transactions`,
+    async (req, res, ctx) => {
+      try {
+        const body = await req.json<TransactionType>();
+        const transaction = await createTransaction(body);
+        return res(ctx.delay(delay()), ctx.json(transaction));
+      } catch (error) {
+        return res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message:
+              error instanceof Error ? error.message : "Something went wrong",
+          })
+        );
+      }
+    }
+  ),
 
   // =========================================
   // PATCH
   // =========================================
-  rest.post<Partial<CardType>, never, CardType | ErrorMessageType>(
+  rest.patch<Partial<CardType>, never, CardType | ErrorMessageType>(
     `/cards`,
     async (req, res, ctx) => {
       try {
@@ -160,16 +264,116 @@ export const handlers = [
       }
     }
   ),
+  rest.patch<Partial<UserType>, never, UserType | ErrorMessageType>(
+    `/users`,
+    async (req, res, ctx) => {
+      try {
+        const body = await req.json<Partial<UserType>>();
+
+        if (body.id) {
+          const card = await updateUser(body.id, body);
+          return res(ctx.delay(delay()), ctx.json(card));
+        } else {
+          res(
+            ctx.delay(delay()),
+            ctx.status(422),
+            ctx.json({
+              message: "User ID is not provided",
+            })
+          );
+        }
+      } catch (error) {
+        return res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message:
+              error instanceof Error ? error.message : "Something went wrong",
+          })
+        );
+      }
+    }
+  ),
+  rest.patch<
+    Partial<TransactionType>,
+    never,
+    TransactionType | ErrorMessageType
+  >(`/transaction`, async (req, res, ctx) => {
+    try {
+      const body = await req.json<Partial<TransactionType>>();
+
+      if (body.id) {
+        const transaction = await updateTransaction(body.id, body);
+        return res(ctx.delay(delay()), ctx.json(transaction));
+      } else {
+        res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message: "Transaction ID is not provided",
+          })
+        );
+      }
+    } catch (error) {
+      return res(
+        ctx.delay(delay()),
+        ctx.status(422),
+        ctx.json({
+          message:
+            error instanceof Error ? error.message : "Something went wrong",
+        })
+      );
+    }
+  }),
 
   // =========================================
   // DELETE
   // =========================================
-  rest.get<never, { id: CardType["cardNumber"] }, boolean | ErrorMessageType>(
-    `/cards/:id`,
+  rest.delete<
+    never,
+    { id: CardType["cardNumber"] },
+    boolean | ErrorMessageType
+  >(`/cards/:id`, async (req, res, ctx) => {
+    try {
+      const { id } = req.params;
+      const result = await deleteCard(id);
+      return res(ctx.delay(delay()), ctx.json(result));
+    } catch (error) {
+      return res(
+        ctx.delay(delay()),
+        ctx.status(422),
+        ctx.json({
+          message:
+            error instanceof Error ? error.message : "Something went wrong",
+        })
+      );
+    }
+  }),
+  rest.delete<never, { id: string }, boolean | ErrorMessageType>(
+    `/users/:id`,
     async (req, res, ctx) => {
       try {
         const { id } = req.params;
-        const result = await deleteCard(id);
+        const result = await deleteUser(+id);
+        return res(ctx.delay(delay()), ctx.json(result));
+      } catch (error) {
+        return res(
+          ctx.delay(delay()),
+          ctx.status(422),
+          ctx.json({
+            message:
+              error instanceof Error ? error.message : "Something went wrong",
+          })
+        );
+      }
+    }
+  ),
+  rest.delete<never, { id: TransactionType["id"] }, boolean | ErrorMessageType>(
+    `/transaction/:id`,
+    async (req, res, ctx) => {
+      try {
+        const { id } = req.params;
+        const result = await deleteTransaction(id);
         return res(ctx.delay(delay()), ctx.json(result));
       } catch (error) {
         return res(
