@@ -12,10 +12,10 @@ export function useCurrency() {
   const {
     data: currencies,
     error,
-    isLoading,
+    isLoading: isLoadingCurrency,
   } = useQuery({
     queryKey: ["currencies"],
     queryFn: fetchData,
   });
-  return { currencies, isLoading, error };
+  return { currencies, isLoadingCurrency, error };
 }
