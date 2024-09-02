@@ -1,3 +1,5 @@
+import { format, parseISO } from "date-fns";
+
 export function debounce(fn: (...args: unknown[]) => void, delay: number) {
   let timerId: ReturnType<Window["setTimeout"]>;
 
@@ -15,4 +17,9 @@ export async function sleep(delay: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
+}
+
+export function formatToMMYY(dateISO: string) {
+  const date = parseISO(dateISO);
+  return format(date, "MM/yy");
 }
