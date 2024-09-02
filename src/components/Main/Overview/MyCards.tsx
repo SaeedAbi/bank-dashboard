@@ -25,7 +25,10 @@ function MyCards() {
       <div className="flex flex-wrap gap-[30px]">
         {currCards?.map((card) => {
           return (
-            <div className="flex h-[235px] w-[350px] flex-shrink-0 flex-col rounded-[25px] bg-gradient-to-br from-[#4C49ED] to-[#0A06F4]">
+            <div
+              key={card.cardNumber}
+              className="flex h-[235px] w-[350px] flex-shrink-0 flex-col rounded-[25px] bg-gradient-to-br from-[#4C49ED] to-[#0A06F4]"
+            >
               <div className="flex items-center justify-between px-[25px] pt-[24px] text-white">
                 <div className="flex flex-col">
                   <div className="text-xs font-normal capitalize">balance</div>
