@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoSettingsSharp } from "react-icons/io5";
 
-import { useWindowSize } from "@/hooks/helpers";
+import { useWindowSize } from "@/hooks/useWindowSize";
 import {
   FaCoins,
   FaCreditCard,

@@ -23,3 +23,13 @@ export function formatToMMYY(dateISO: string) {
   const date = parseISO(dateISO);
   return format(date, "MM/yy");
 }
+
+export async function fetchAPI<T>(
+  input: RequestInfo | URL,
+  init?: RequestInit
+) {
+  const rawResponse = await fetch(input, init);
+  const response = await rawResponse.json();
+
+  return response as T;
+}

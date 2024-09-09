@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useWindowSize } from "@/hooks/helpers";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 import DesktopHeader from "@/components/Header/desktopHeader";
 import PhoneHeader from "@/components/Header/phoneHeader";
