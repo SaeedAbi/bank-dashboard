@@ -9,6 +9,7 @@ import Authentication from "@/components/Autentication";
 import Content from "@/components/Content";
 import ServiceWorker from "@/components/ServiceWorker";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { GeneralAppStates } from "@/components/GeneralAppStates";
 
 const queryClient = new QueryClient();
 
@@ -50,7 +51,9 @@ export default function RootLayout({
             <ReactQueryDevtools initialIsOpen={false} />
             <ServiceWorker>
               <Authentication>
-                <Content>{children}</Content>
+                <GeneralAppStates>
+                  <Content>{children}</Content>
+                </GeneralAppStates>
               </Authentication>
             </ServiceWorker>
           </QueryClientProvider>
