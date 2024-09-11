@@ -11,21 +11,19 @@ import BalanceHistory from "@/components/Main/Overview/BalanceHistory";
 
 export default function Home() {
   return (
-    <main className="bg-mainBg">
-      <div className="mx-10 flex flex-wrap overflow-auto">
-        <div className={"flex flex-wrap gap-[30px]"}>
-          <MyCards />
-          <RecentTransactions />
-        </div>
-        <div className={"flex flex-wrap gap-[30px]"}>
-          <WeeklyActivities />
-          <ExpenseStatistics />
-        </div>
-        <div className={"flex flex-wrap gap-[30px]"}>
-          <QuickTransfer />
-          <BalanceHistory />
-        </div>
+    <>
+      <div className={"flex flex-wrap gap-[30px]"}>
+        <MyCards />
+        <RecentTransactions />
       </div>
-    </main>
+      <div className={"flex flex-wrap gap-[30px]"}>
+        <WeeklyActivities />
+        <ExpenseStatistics />
+      </div>
+      <div className={"flex flex-wrap gap-[30px]"}>
+        <QuickTransfer />
+        <BalanceHistory />
+      </div>
+    </>
   );
 }
