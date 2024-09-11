@@ -1,6 +1,9 @@
 import React from "react";
 import { Avatar, Button, Input, Space } from "antd";
 import { RightOutlined, SendOutlined, UserOutlined } from "@ant-design/icons";
+import { POSITIONS_KEY } from "@/hooks/useInventory";
+import { useQueryClient } from "@tanstack/react-query";
+import { InventoryType } from "@/interfaces";
 
 const contacts = [
   {
@@ -21,6 +24,9 @@ const contacts = [
 ];
 
 function QuickTransfer() {
+  const clientQuery = useQueryClient();
+  const positions = clientQuery.getQueryData<InventoryType[]>([POSITIONS_KEY]);
+
   return (
     <div className={"mt-6"}>
       <div className="text-3xl font-semibold text-primary">

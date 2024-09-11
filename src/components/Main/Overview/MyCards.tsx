@@ -1,19 +1,19 @@
 import * as React from "react";
+
 import Image from "next/image";
 import chipCard from "../../../../public/Chip_Card.png";
 import bankLogo from "../../../../public/bankLogo.png";
-import { useCards } from "@/hooks/queries/useCards";
-import { useCurrency } from "@/hooks/queries/useCurrency";
-import { usePositions } from "@/hooks/queries/usePositions";
 import { formatToMMYY } from "@/utils/helper";
 
-function MyCards() {
-  const { cards, error, isLoading } = useCards();
-  const { currencies, isLoadingCurrency } = useCurrency();
-  const { positions, isLoadingPosition, errorPositions } = usePositions();
+const currCards = [
+  {
+    balance: 5200,
+    cardNumber: 123232323232323,
+    expireDate: "2024-01-15T00:00:00Z",
+  },
+];
 
-  const currCards = cards?.filter((card) => card.holder === 5);
-  console.log(currCards);
+function MyCards() {
   return (
     <div>
       <div className="mb-[20px] mt-[25px] flex justify-between overflow-auto">
@@ -47,7 +47,7 @@ function MyCards() {
                     card holder
                   </div>
                   <div className="text-sm font-semibold capitalize">
-                    eddy cusuma
+                    saeed abdary
                   </div>
                 </div>
                 <div className="ml-[67px]">
