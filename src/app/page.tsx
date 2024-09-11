@@ -8,12 +8,17 @@ import WeeklyActivities from "@/components/Main/Overview/WeeklyActivities";
 import ExpenseStatistics from "@/components/Main/Overview/ExpenseStatistics";
 import QuickTransfer from "@/components/Main/Overview/QuickTransfer";
 import BalanceHistory from "@/components/Main/Overview/BalanceHistory";
+import { useCards, useTransactions, useUsers } from "@/hooks/queries";
 
 export default function Home() {
+  const { data: cardData } = useCards();
+  const { data: userData } = useUsers();
+  const { data: transactionData } = useTransactions();
+
   return (
     <>
       <div className={"flex flex-wrap gap-[30px]"}>
-        <MyCards />
+        <MyCards cards={cardData} users={userData} />
         <RecentTransactions />
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
