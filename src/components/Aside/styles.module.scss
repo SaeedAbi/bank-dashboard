@@ -31,3 +31,11 @@ $logo-height: 100px;
     @apply mt-[31px] overflow-y-auto;
   }
 }
+
+.link{
+  @apply text-xl flex items-center gap-[26px] border-l-[6px] border-l-white py-5 pl-11 font-medium text-secondary;
+  &:hover,
+  &.active{
+    @apply border-l-[6px] border-l-darkBlue text-primary;
+  }
+}

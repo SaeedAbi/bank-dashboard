@@ -92,13 +92,9 @@ function Aside() {
             return (
               <li key={link.label}>
                 <Link
-                  className={classNames(
-                    "text-lg flex items-center gap-[26px] border-l-[6px] border-l-white py-5 pl-11 font-medium text-secondary hover:border-l-[6px] hover:border-l-darkBlue hover:text-primary",
-                    {
-                      ["border-l-[6px] border-l-darkBlue text-primary"]:
-                        isActive,
-                    }
-                  )}
+                  className={classNames(styles.link, {
+                    [styles.active]: isActive,
+                  })}
                   href={link.href}
                 >
                   {link.icon}
