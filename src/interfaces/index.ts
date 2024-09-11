@@ -115,4 +115,10 @@ export interface TransactionType {
   category: InventoryType["id"];
   status: TransactionStatus;
   destinationCardNumber: CardType["cardNumber"];
+
+  /**
+   * transaction belongs to that user
+   */
+  userId: UserType["id"];
+
 }

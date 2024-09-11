@@ -6,6 +6,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "@/routes";
 import Inventory from "@/components/Inventroty";
 
+export const currentUserId = 12;
+
 function Authentication({ children }: React.PropsWithChildren) {
   const pathname = usePathname();
   const router = useRouter();
