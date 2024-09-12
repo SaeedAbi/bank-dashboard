@@ -29,7 +29,19 @@ function RecentTransactions({ transactions = [] }: Proptypes) {
             <div key={transaction.id} className="ml-[25px] mr-8 mt-[25px] flex">
               <Space className="mr-[17px]">
                 <Avatar
-                  style={isDeposit?{ height: "55px", width: "55px",backgroundColor:'green' }:{ height: "55px", width: "55px",backgroundColor:'salmon' }}
+                  style={
+                    isDeposit
+                      ? {
+                          height: "55px",
+                          width: "55px",
+                          backgroundColor: "green",
+                        }
+                      : {
+                          height: "55px",
+                          width: "55px",
+                          backgroundColor: "salmon",
+                        }
+                  }
                   icon={<MdCardTravel />}
                 />
               </Space>
