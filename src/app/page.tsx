@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <div className={"flex flex-wrap gap-[30px]"}>
         <MyCards cards={cardData} users={userData} />
-        <RecentTransactions />
+        <RecentTransactions transactions={transactionData} />
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
         <WeeklyActivities />
