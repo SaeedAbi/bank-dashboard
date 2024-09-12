@@ -1,4 +1,7 @@
+"use client";
+
 import * as React from "react";
+import Link from "next/link";
 
 import Image from "next/image";
 import chipCard from "../../../../public/Chip_Card.png";
@@ -6,6 +9,8 @@ import bankLogo from "../../../../public/bankLogo.png";
 import { formatToMMYY } from "@/utils/helper";
 import { CardType, UserType } from "@/interfaces";
 import { currentUserId } from "@/components/Autentication";
+import { useRouter } from "next/navigation";
+import { PRIVATE_ROUTES } from "@/routes";
 
 interface Proptypes {
   cards?: CardType[];
@@ -16,10 +21,13 @@ function MyCards({ cards = [], users = [] }: Proptypes) {
   //=============================================
   // Init
   //=============================================
+  const router = useRouter();
+
   const mineCards = cards.filter((card) => card.holder === currentUserId);
   const firstTwoCards = mineCards?.slice(0, 2);
-  const isNoCard = mineCards.length !== 0;
+  const isNoCard = mineCards.length === 0;
   const mineProfile = users.find((user) => user.id === currentUserId);
+
   //=============================================
   // Subcomponents
   //=============================================
@@ -71,9 +79,12 @@ function MyCards({ cards = [], users = [] }: Proptypes) {
       <div className="mb-[20px] mt-[25px] flex justify-between overflow-auto">
         <span className="text-3xl font-semibold text-primary">My cards</span>
         {mineCards.length > 2 ? (
-          <button className="text-base font-semibold text-primary">
+          <Link
+            href={PRIVATE_ROUTES.cards.root}
+            className="text-base font-semibold text-primary"
+          >
             See all
-          </button>
+          </Link>
         ) : null}
       </div>
       <div className="flex flex-wrap gap-[30px]">

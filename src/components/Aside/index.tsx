@@ -4,8 +4,8 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoSettingsSharp } from "react-icons/io5";
-
-import { useWindowSize } from "@/hooks/useWindowSize";
+import { usePathname, useRouter } from "next/navigation";
+import classNames from "classnames";
 import {
   FaCoins,
   FaCreditCard,
@@ -15,11 +15,11 @@ import {
   FaRegUser,
   FaToolbox,
 } from "react-icons/fa6";
+
+import { useWindowSize } from "@/hooks/useWindowSize";
 import logo from "../../../public/Logo.png";
 import styles from "./styles.module.scss";
 import { PRIVATE_ROUTES } from "@/routes";
-import { usePathname, useRouter } from "next/navigation";
-import classNames from "classnames";
 
 const links = [
   {
@@ -45,7 +45,7 @@ const links = [
   {
     label: "Credit Cards",
     icon: <FaCreditCard />,
-    href: PRIVATE_ROUTES.cards,
+    href: PRIVATE_ROUTES.cards.credit,
   },
   {
     label: "Loans",
