@@ -19,11 +19,6 @@ export async function sleep(delay: number) {
   });
 }
 
-export function formatToMMYY(dateISO: string) {
-  const date = parseISO(dateISO);
-  return format(date, "MM/yy");
-}
-
 export async function fetchAPI<T>(
   input: RequestInfo | URL,
   init?: RequestInit
