@@ -26,12 +26,9 @@ function WeeklyActivities({ transactions = [] }: PropType) {
 
   const lastWeekTransactions = myTransactions.filter((transaction) => {
     const date = new Date(transaction.date);
-    console.log(sevenDaysAgo);
     return isAfter(date, sevenDaysAgo) && isBefore(date, today);
   });
   const value: unknown[] = [];
-
-  // console.log(lastSevenDays); // 6 to 12
 
   lastSevenDays.forEach((day) => {
     const weekDay = formatToWeekDay(day);

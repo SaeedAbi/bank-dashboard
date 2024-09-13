@@ -8,12 +8,18 @@ import WeeklyActivities from "@/components/Main/Overview/WeeklyActivities";
 import ExpenseStatistics from "@/components/Main/Overview/ExpenseStatistics";
 import QuickTransfer from "@/components/Main/Overview/QuickTransfer";
 import BalanceHistory from "@/components/Main/Overview/BalanceHistory";
-import { useCards, useTransactions, useUsers } from "@/hooks/queries";
+import {
+  useCards,
+  useCategories,
+  useTransactions,
+  useUsers,
+} from "@/hooks/queries";
 
 export default function Home() {
   const { data: cardData } = useCards();
   const { data: userData } = useUsers();
   const { data: transactionData } = useTransactions();
+  const { data: categoriesData } = useCategories();
 
   return (
     <>
@@ -23,7 +29,10 @@ export default function Home() {
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
         <WeeklyActivities transactions={transactionData} />
-        <ExpenseStatistics />
+        <ExpenseStatistics
+          transactions={transactionData}
+          categories={categoriesData}
+        />
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
         <QuickTransfer />
