@@ -1,81 +1,69 @@
+"use client";
+
 import React from "react";
 import { Column } from "@ant-design/plots";
+import { ActionType, TransactionType } from "@/interfaces";
+import { isAfter, isBefore, subDays } from "date-fns";
+import {
+  formatDateTOYYYYMMDD,
+  formatToWeekDay,
+  getDatesArray,
+} from "@/utils/date";
 
-function WeeklyActivities() {
+import { currentUserId, today } from "@/components/Autentication";
+
+interface PropType {
+  transactions?: TransactionType[];
+}
+
+function WeeklyActivities({ transactions = [] }: PropType) {
+  const sevenDaysAgo = subDays(new Date(today), 7);
+  const lastSevenDays = getDatesArray(sevenDaysAgo, 7);
+
+  const myTransactions = transactions.filter(
+    (transaction) => transaction.userId === currentUserId
+  );
+
+  const lastWeekTransactions = myTransactions.filter((transaction) => {
+    const date = new Date(transaction.date);
+    console.log(sevenDaysAgo);
+    return isAfter(date, sevenDaysAgo) && isBefore(date, today);
+  });
+  const value: unknown[] = [];
+
+  // console.log(lastSevenDays); // 6 to 12
+
+  lastSevenDays.forEach((day) => {
+    const weekDay = formatToWeekDay(day);
+    let withdrawAmount = 0;
+    let depositAmount = 0;
+
+    lastWeekTransactions.forEach((transaction) => {
+      const formattedDate = formatDateTOYYYYMMDD(transaction.date);
+
+      if (formattedDate === day) {
+        if (transaction.type === ActionType.withdraw) {
+          withdrawAmount += transaction.amount;
+        } else if (transaction.type === ActionType.deposit) {
+          depositAmount += transaction.amount;
+        }
+      }
+    });
+
+    value.push({
+      name: "Withdraw",
+      weekDay,
+      amount: withdrawAmount,
+    });
+    value.push({
+      name: "Deposit",
+      weekDay,
+      amount: depositAmount,
+    });
+  });
   const config = {
     data: {
-      value: [
-        {
-          name: "Withdraw",
-          weekDay: "Mon",
-          amount: 200,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Tue",
-          amount: 500,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Wed",
-          amount: 100,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Thu",
-          amount: 300,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Fri",
-          amount: 400,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Sat",
-          amount: 160,
-        },
-        {
-          name: "Withdraw",
-          weekDay: "Sun",
-          amount: 400,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Mon",
-          amount: 200,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Tue",
-          amount: 200,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Wed",
-          amount: 700,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Thu",
-          amount: 800,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Fri",
-          amount: 200,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Sat",
-          amount: 200,
-        },
-        {
-          name: "Deposit",
-          weekDay: "Sun",
-          amount: 900,
-        },
-      ],
+      value,
     },
     xField: "weekDay",
     yField: "amount",

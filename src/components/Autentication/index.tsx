@@ -8,6 +8,8 @@ import Inventory from "@/components/Inventroty";
 
 export const currentUserId = 12;
 
+export const today = "2024-09-13";
+
 function Authentication({ children }: React.PropsWithChildren) {
   const pathname = usePathname();
   const router = useRouter();
