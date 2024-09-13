@@ -24,7 +24,6 @@ function RecentTransactions({ transactions = [] }: Proptypes) {
       <div className="mt-5 flex h-[243px] w-[350px] flex-col justify-center rounded-[25px] bg-white pb-[30px]">
         {firstThreeTransactions?.map((transaction) => {
           const isDeposit = transaction.type === 1;
-          console.log(isDeposit);
           return (
             <div key={transaction.id} className="ml-[25px] mr-8 mt-[25px] flex">
               <Space className="mr-[17px]">
@@ -45,7 +44,7 @@ function RecentTransactions({ transactions = [] }: Proptypes) {
                   icon={<MdCardTravel />}
                 />
               </Space>
-              <div>
+              <div className="self-center">
                 <div className="text-base font-medium text-black">
                   {transaction.description}
                 </div>
