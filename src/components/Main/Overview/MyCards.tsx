@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import chipCard from "../../../../public/Chip_Card.png";
 import bankLogo from "../../../../public/bankLogo.png";
-import { formatToMMYY } from "@/utils/helper";
+import { formatToMMYY } from "@/utils/date";
 import { CardType, UserType } from "@/interfaces";
 import { currentUserId } from "@/components/Autentication";
 import { useRouter } from "next/navigation";

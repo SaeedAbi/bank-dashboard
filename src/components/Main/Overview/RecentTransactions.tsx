@@ -3,7 +3,7 @@ import { TransactionType } from "@/interfaces";
 import { Avatar, Space } from "antd";
 import { MdCardTravel } from "react-icons/md";
 import { currentUserId } from "@/components/Autentication";
-import { formatToMMYY } from "@/utils/helper";
+import { formatToMMYY } from "@/utils/date";
 import classNames from "classnames";
 
 interface Proptypes {
