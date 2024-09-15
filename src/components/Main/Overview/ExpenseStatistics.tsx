@@ -1,14 +1,39 @@
 import React from "react";
 import { Pie } from "@ant-design/plots";
+import { InventoryType, TransactionType } from "@/interfaces";
+import { currentUserId } from "@/components/Autentication";
 
-function ExpenseStatistics() {
+interface PropType {
+  transactions?: TransactionType[];
+  categories?: InventoryType[];
+}
+
+interface Category {
+  type?: string;
+  value?: number;
+}
+
+function ExpenseStatistics({ transactions = [], categories = [] }: PropType) {
+  const myTransactions = transactions?.filter(
+    (transaction) => transaction.userId === currentUserId
+  );
+  const myCategory = myTransactions.map((transaction) =>
+    categories?.find((category) => category.id === transaction.category)
+  );
+  const category: Category = {};
+  myCategory.forEach((txn) => {
+    const label = txn["label"];
+    category[label] = category[label] ? category[label] + 1 : 1;
+  });
+  const categoryResult: Category[] = Object.entries(category).map(
+    ([type, value]) => ({
+      type,
+      value,
+    })
+  );
+  console.log(categoryResult);
   const config = {
-    data: [
-      { type: "Entertainment", value: 27 },
-      { type: "Investment", value: 25 },
-      { type: "Bill Expense", value: 18 },
-      { type: "Other", value: 15 },
-    ],
+    data: categoryResult,
     angleField: "value",
     colorField: "type",
     label: {
@@ -17,7 +42,13 @@ function ExpenseStatistics() {
         fontWeight: "bold",
       },
     },
-    legend: false,
+    legend: {
+      color: {
+        title: false,
+        position: "top",
+        rowPadding: 5,
+      },
+    },
   };
 
   return (
