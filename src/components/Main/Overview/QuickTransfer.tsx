@@ -1,32 +1,21 @@
 import React from "react";
 import { Avatar, Button, Input, Space } from "antd";
 import { RightOutlined, SendOutlined, UserOutlined } from "@ant-design/icons";
-import { POSITIONS_KEY } from "@/hooks/useInventory";
-import { useQueryClient } from "@tanstack/react-query";
-import { InventoryType } from "@/interfaces";
+import { InventoryType, UserType } from "@/interfaces";
+import { currentUserId } from "@/components/Autentication";
 
-const contacts = [
-  {
-    avatarImage: <UserOutlined />,
-    name: "Livia Bator",
-    title: "CEO",
-  },
-  {
-    avatarImage: <UserOutlined />,
-    name: "Randy Press",
-    title: "Director",
-  },
-  {
-    avatarImage: <UserOutlined />,
-    name: "Workman",
-    title: "Designer",
-  },
-];
+interface PropType {
+  users?: UserType[];
+  positions?: InventoryType[];
+}
 
-function QuickTransfer() {
-  const clientQuery = useQueryClient();
-  const positions = clientQuery.getQueryData<InventoryType[]>([POSITIONS_KEY]);
-
+function QuickTransfer({ users = [], positions = [] }: PropType) {
+  const userFriends = users.filter((user) => user.id !== currentUserId);
+  const positionMap = new Map(positions.map((p) => [p.id, p.label]));
+  userFriends.forEach((user) => {
+    user.position = positionMap.get(user.position);
+    console.log(userFriends);
+  });
   return (
     <div className={"mt-6"}>
       <div className="text-3xl font-semibold text-primary">
@@ -38,23 +27,22 @@ function QuickTransfer() {
         }
       >
         <div className={"flex items-center gap-7"}>
-          {contacts.map((contact) => (
-            <div
-              key={contact.name}
-              className={"flex flex-col items-center pb-7"}
-            >
+          {userFriends.map((contact) => (
+            <div key={contact.id} className={"flex flex-col items-center pb-7"}>
               <Space wrap style={{ paddingBottom: "15px" }}>
                 <Avatar
                   style={{ height: "60px", width: "60px" }}
-                  icon={contact.avatarImage}
+                  icon={contact.avatar ? contact.avatar : <UserOutlined />}
                 />
               </Space>
-              <div className={"pb-1 text-base font-normal text-black"}>
-                {contact.name}
+              <div
+                className={
+                  "pb-1 text-base font-normal text-black justify-self-center"
+                }
+              >
+                {contact.fullName}
               </div>
-              <div className={"text-sm font-normal text-textBlue"}>
-                {contact.title}
-              </div>
+              <div className={"text-sm font-normal text-textBlue"}>title</div>
             </div>
           ))}
           <Button
@@ -63,14 +51,14 @@ function QuickTransfer() {
             icon={<RightOutlined style={{ color: "#718EBF" }} />}
           />
         </div>
-        <div className={"flex items-center justify-between gap-7"}>
-          <span className={"text-base font-normal text-textBlue"}>
+        <div>
+          <div className={"text-base font-normal text-textBlue"}>
             Write Amount
-          </span>
+          </div>
           <Space.Compact
-            style={{ width: 265, height: 50, borderRadius: "50px" }}
+            style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Input defaultValue="5200" style={{ height: 50, width: 140 }} />
+            <Input defaultValue="5200" style={{ borderRadius: "50px" }} />
             <Button
               className={
                 "border-spacing-10 text-base font-normal text-textBlue"

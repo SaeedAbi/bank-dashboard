@@ -31,7 +31,6 @@ function ExpenseStatistics({ transactions = [], categories = [] }: PropType) {
       value,
     })
   );
-  console.log(categoryResult);
   const config = {
     data: categoryResult,
     angleField: "value",
