@@ -9,12 +9,12 @@ import {
   UserType,
 } from "@/interfaces";
 import { fetchAPI } from "@/utils/helper";
-import { categories } from "@/db";
 
 export const CARD_KEY = "CARD_KEY";
 export const USER_KEY = "USER_KEY";
 export const TRANSACTION_KEY = "TRANSACTION_KEY";
 export const CATEGORY_KEY = "CATEGORY_KEY";
+export const POSITION_KEY = "POSITION_KEY";
 
 //=============================================
 // Queries
@@ -56,5 +56,14 @@ export function useCategories() {
       return fetchAPI<InventoryType[]>(`/categories`);
     },
     suspense: true,
+  });
+}
+
+export function usePositions() {
+  return useQuery({
+    queryKey: [POSITION_KEY],
+    async queryFn() {
+      return fetchAPI<InventoryType[]>("/positions");
+    },
   });
 }
