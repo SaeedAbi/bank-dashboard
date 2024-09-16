@@ -11,6 +11,7 @@ import BalanceHistory from "@/components/Main/Overview/BalanceHistory";
 import {
   useCards,
   useCategories,
+  usePositions,
   useTransactions,
   useUsers,
 } from "@/hooks/queries";
@@ -20,7 +21,7 @@ export default function Home() {
   const { data: userData } = useUsers();
   const { data: transactionData } = useTransactions();
   const { data: categoriesData } = useCategories();
-
+  const { data: positionsData } = usePositions();
   return (
     <>
       <div className={"flex flex-wrap gap-[30px]"}>
@@ -35,7 +36,7 @@ export default function Home() {
         />
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
-        <QuickTransfer />
+        <QuickTransfer users={userData} positions={positionsData} />
         <BalanceHistory />
       </div>
     </>
