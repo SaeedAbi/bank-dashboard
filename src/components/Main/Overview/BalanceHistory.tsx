@@ -1,31 +1,28 @@
 import React from "react";
 import { Area } from "@ant-design/plots";
+import { TransactionType } from "@/interfaces";
+import { currentUserId } from "@/components/Autentication";
+import { formatToMMMM } from "@/utils/date";
 
-function BalanceHistory() {
+interface PropTypes {
+  transactions?: TransactionType[];
+}
+
+function BalanceHistory({ transactions = [] }: PropTypes) {
+  const myTransactions = transactions?.filter(
+    (transaction) => transaction.userId === currentUserId
+  );
+  const formatTransaction = myTransactions?.map((transaction) => {
+    return {
+      date: formatToMMMM(transaction.date),
+      amount: transaction.amount,
+    };
+  });
   const config = {
     data: {
-      value: [
-        { symbol: "GOOG", date: "Jan 1", amount: 195.62 },
-        { symbol: "GOOG", date: "Feb 1", amount: 187.99 },
-        { symbol: "GOOG", date: "Mar 1", amount: 180.51 },
-        { symbol: "GOOG", date: "Apr 1", amount: 220 },
-        { symbol: "GOOG", date: "May 1", amount: 277.27 },
-        { symbol: "GOOG", date: "Jun 1", amount: 294.15 },
-        { symbol: "GOOG", date: "Jul 1", amount: 287.76 },
-        { symbol: "GOOG", date: "Aug 1", amount: 286 },
-        { symbol: "GOOG", date: "Sep 1", amount: 316.46 },
-        { symbol: "GOOG", date: "Oct 1", amount: 372.14 },
-        { symbol: "GOOG", date: "Nov 1", amount: 404.91 },
-        { symbol: "GOOG", date: "Dec 1", amount: 414.86 },
-      ],
-      transform: [
-        {
-          type: "filter",
-          callback: (d: { symbol: string }) => d.symbol === "GOOG",
-        },
-      ],
+      value: formatTransaction,
     },
-    xField: (d: { date: Date }) => new Date(d.date),
+    xField: "date",
     yField: "amount",
     style: {
       fill: "linear-gradient(-90deg, white 0%,#0A06F4 100%)",

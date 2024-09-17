@@ -37,7 +37,7 @@ export default function Home() {
       </div>
       <div className={"flex flex-wrap gap-[30px]"}>
         <QuickTransfer users={userData} positions={positionsData} />
-        <BalanceHistory />
+        <BalanceHistory transactions={transactionData} />
       </div>
     </>
   );
