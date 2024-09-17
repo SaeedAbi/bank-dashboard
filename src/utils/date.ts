@@ -5,6 +5,11 @@ export function formatToMMYY(dateISO: string) {
   return format(date, "MM/yy");
 }
 
+export function formatToMMMM(dateISO: string) {
+  const date = parseISO(dateISO);
+  return format(date, "MMMM");
+}
+
 export function formatToWeekDay(dateISO: string) {
   const date = parseISO(dateISO);
   return format(date, "EEEE");
