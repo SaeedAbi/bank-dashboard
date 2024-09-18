@@ -9,14 +9,28 @@ interface PropType {
   positions?: InventoryType[];
 }
 
-interface ContactType extends UserType{
-  positionLabel?:string;
+interface ContactType extends UserType {
+  positionLabel?: string;
 }
 
 const PER_PAGE = 3;
 
 function QuickTransfer({ users = [], positions = [] }: PropType) {
-  const userFriends = users.filter((user) => user.id !== currentUserId);
+  const contacts = users.reduce<ContactType[]>((prev, curr) => {
+    const positionId = curr.position;
+    const foundedPosition = positions?.find(
+      (position) => position.id === positionId
+    );
+
+    if(foundedPosition){
+      return {
+        ...curr,
+        positionLabel:foundedPosition.label
+      }
+    }
+
+    return prev;
+  }, []);
 
   return (
     <div className={"mt-6"}>
