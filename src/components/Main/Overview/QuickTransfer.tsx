@@ -10,7 +10,7 @@ interface PropType {
 }
 
 interface ContactType extends UserType{
-  positionLanel?:string;
+  positionLabel?:string;
 }
 
 const PER_PAGE = 3;
