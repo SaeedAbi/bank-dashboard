@@ -9,24 +9,15 @@ interface PropType {
   positions?: InventoryType[];
 }
 
+interface ContactType extends UserType{
+  positionLanel?:string;
+}
+
 const PER_PAGE = 3;
 
 function QuickTransfer({ users = [], positions = [] }: PropType) {
-  // const [currPage, setCurrPage] = React.useState(1);
   const userFriends = users.filter((user) => user.id !== currentUserId);
-  const positionMap = new Map(positions.map((p) => [p.id, p.label]));
-  const contacts = userFriends.map((user) => ({
-    ...user,
-    position: positionMap.get(user.position),
-  }));
-  const initUsers = contacts.slice(0, PER_PAGE);
-  // const [userToShow, setUserToShow] = React.useState(initUsers);
-  //
-  // React.useEffect(() => {
-  //   const startIndex = (currPage - 1) * PER_PAGE;
-  //   const endIndex = Math.min(currPage * PER_PAGE, userFriends.length);
-  //   setUserToShow(userFriends.slice(startIndex, endIndex));
-  // }, [currPage, setUserToShow, userFriends]);
+
   return (
     <div className={"mt-6"}>
       <div className="text-3xl font-semibold text-primary">
