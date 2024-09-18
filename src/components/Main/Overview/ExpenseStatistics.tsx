@@ -8,31 +8,35 @@ interface PropType {
   categories?: InventoryType[];
 }
 
-interface Category {
-  type?: string;
-  value?: number;
-}
-
 function ExpenseStatistics({ transactions = [], categories = [] }: PropType) {
   const myTransactions = transactions?.filter(
     (transaction) => transaction.userId === currentUserId
   );
-  const myCategory = myTransactions.map((transaction) =>
-    categories?.find((category) => category.id === transaction.category)
-  );
-  const category: Category = {};
-  myCategory.forEach((txn) => {
-    const label = txn["label"];
-    category[label] = category[label] ? category[label] + 1 : 1;
+  const myCategories = myTransactions.reduce<InventoryType[]>((prev, cur) => {
+    const foundedCategory = categories?.find(
+      (category) => category.id === cur.category
+    );
+
+    if (foundedCategory) {
+      return [...prev, foundedCategory];
+    }
+    return prev;
+  }, []);
+  const categoryResult: Record<string, number> = {};
+
+  myCategories.forEach((category) => {
+    if (category.label in categoryResult) {
+      categoryResult[category.label] = categoryResult[category.label] + 1;
+    } else {
+      categoryResult[category.label] = 1;
+    }
   });
-  const categoryResult: Category[] = Object.entries(category).map(
-    ([type, value]) => ({
+
+  const config = {
+    data: Object.entries(categoryResult).map(([type, value]) => ({
       type,
       value,
-    })
-  );
-  const config = {
-    data: categoryResult,
+    })),
     angleField: "value",
     colorField: "type",
     label: {
