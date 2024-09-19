@@ -1,8 +1,8 @@
 import React from "react";
 import { Avatar, Button, Input, Space } from "antd";
 import { RightOutlined, SendOutlined, UserOutlined } from "@ant-design/icons";
+
 import { InventoryType, UserType } from "@/interfaces";
-import { currentUserId } from "@/components/Autentication";
 
 interface PropType {
   users?: UserType[];
@@ -13,20 +13,21 @@ interface ContactType extends UserType {
   positionLabel?: string;
 }
 
-const PER_PAGE = 3;
-
 function QuickTransfer({ users = [], positions = [] }: PropType) {
-  const contacts = users.reduce<ContactType[]>((prev, curr) => {
+  const contacts = users.reduce<ContactType[]>((prev, curr, index) => {
     const positionId = curr.position;
     const foundedPosition = positions?.find(
       (position) => position.id === positionId
     );
 
-    if(foundedPosition){
-      return {
-        ...curr,
-        positionLabel:foundedPosition.label
-      }
+    if (foundedPosition && index < 3) {
+      return [
+        ...prev,
+        {
+          ...curr,
+          positionLabel: foundedPosition.label,
+        },
+      ];
     }
 
     return prev;
@@ -43,7 +44,7 @@ function QuickTransfer({ users = [], positions = [] }: PropType) {
         }
       >
         <div className={"flex gap-7 justify-center items-center"}>
-          {initUsers.map((contact) => (
+          {contacts.map((contact) => (
             <div
               key={contact.id}
               className={"flex flex-col items-center pb-7 pt-9"}
@@ -62,7 +63,7 @@ function QuickTransfer({ users = [], positions = [] }: PropType) {
                 {contact.fullName}
               </div>
               <div className={"text-sm font-normal text-textBlue"}>
-                {contact.position}
+                {contact.positionLabel}
               </div>
             </div>
           ))}
