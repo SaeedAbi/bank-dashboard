@@ -34,6 +34,7 @@ const config: Config = {
         withdraw: "#FF4B4A",
         deposit: "#41D4A8",
         darkBlue: "#0A06F4",
+        borderGrey: "#EBEEF2",
       },
     },
   },
