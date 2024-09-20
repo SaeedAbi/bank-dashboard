@@ -11,7 +11,7 @@ const expense = [
   { date: "G", amount: 0 },
 ];
 
-function _MyExpense() {
+function MyExpense() {
   const config = {
     data: {
       value: expense,
@@ -54,4 +54,4 @@ function _MyExpense() {
   );
 }
 
-export default _MyExpense;
+export default MyExpense;

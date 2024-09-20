@@ -3,7 +3,8 @@
 import * as React from "react";
 import MyCards from "@/components/Main/Overview/MyCards";
 import { useCards, useUsers } from "@/hooks/queries";
-import _MyExpense from "@/app/transactions/_MyExpense";
+import MyExpense from "@/app/transactions/_MyExpense";
+import RecentTransactions from "@/app/transactions/_RecentTransactions";
 
 function Transaction() {
   const { data: cardData } = useCards();
@@ -12,8 +13,9 @@ function Transaction() {
     <div>
       <div className={"flex flex-wrap gap-8"}>
         <MyCards cards={cardData} users={userData} />
-        <_MyExpense />
+        <MyExpense />
       </div>
+      <RecentTransactions />
     </div>
   );
 }
