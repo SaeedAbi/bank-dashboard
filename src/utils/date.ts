@@ -37,3 +37,8 @@ export function getDatesArray(startDate: Date | string, numDays: number) {
 
   return dateArray;
 }
+
+export function formatToddMMMhh(dateISO: string) {
+  const date = parseISO(dateISO);
+  return format(date, "dd MMM, hh.mm a");
+}
