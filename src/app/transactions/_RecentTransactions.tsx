@@ -1,7 +1,19 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { InventoryType, TransactionType } from "@/interfaces";
+import { currentUserId } from "@/components/Autentication";
+import { formatToddMMMhh } from "@/utils/date";
 
-function RecentTransactions() {
+interface PropTypes {
+  transactions?: TransactionType[];
+  categories?: InventoryType[];
+}
+
+function RecentTransactions({ transactions = [], categories = [] }: PropTypes) {
+  const myTransactions = transactions?.filter(
+    (transaction) => (transaction.userId = currentUserId)
+  );
+
   return (
     <div className={"flex flex-col flex-shrink flex-grow"}>
       <div className="mb-7 mt-[25px] text-3xl font-semibold text-primary">
@@ -23,7 +35,7 @@ function RecentTransactions() {
                 Transaction ID
               </th>
               <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Type
+                Category
               </th>
               <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Card
@@ -40,15 +52,26 @@ function RecentTransactions() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="py-4 px-6">Spotify Subscription</td>
-              <td className="py-4 px-6">#12548796</td>
-              <td className="py-4 px-6">Shopping</td>
-              <td className="py-4 px-6">1234 ****</td>
-              <td className="py-4 px-6">28 Jan, 12.30 AM</td>
-              <td className="py-4 px-6">-&#8364;2,500</td>
-              <td className="py-4 px-6">Download</td>
-            </tr>
+            {myTransactions.map((transaction) => {
+              const dataCategory = categories?.find(
+                (category) => category.id === transaction.category
+              );
+              return (
+                <tr>
+                  <td className="py-4 px-6">{transaction.description}</td>
+                  <td className="py-4 px-6">{transaction.id}</td>
+                  <td className="py-4 px-6">{dataCategory?.label}</td>
+                  <td className="py-4 px-6">
+                    {transaction.destinationCardNumber}
+                  </td>
+                  <td className="py-4 px-6">
+                    {formatToddMMMhh(transaction.date)}
+                  </td>
+                  <td className="py-4 px-6">${transaction.amount}</td>
+                  <td className="py-4 px-6">download</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
