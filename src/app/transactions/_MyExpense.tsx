@@ -1,5 +1,19 @@
+"use client";
+
 import React from "react";
 import { Column } from "@ant-design/plots";
+import { TransactionType } from "@/interfaces";
+import { isAfter, isBefore, subDays } from "date-fns";
+import { currentUserId, today } from "@/components/Autentication";
+import {
+  formatDateTOYYYYMMDD,
+  formatToWeekDay,
+  getDatesArray,
+} from "@/utils/date";
+
+interface Proptypes {
+  transactions?: TransactionType[];
+}
 
 const expense = [
   { date: "A", amount: 2200 },
@@ -11,12 +25,41 @@ const expense = [
   { date: "G", amount: 0 },
 ];
 
-function MyExpense() {
+function MyExpense({ transactions = [] }: Proptypes) {
+  const sevenDaysAgo = subDays(new Date(today), 7);
+  const lastSevenDays = getDatesArray(sevenDaysAgo, 7);
+
+  const myTransactions = transactions.filter(
+    (transaction) => transaction.userId === currentUserId
+  );
+  const withdrawTransactions = myTransactions?.filter(
+    (transaction) => transaction.type === 0
+  );
+  const weeklyExpense = withdrawTransactions?.filter((transaction) => {
+    const date = new Date(transaction.date);
+    return isAfter(date, sevenDaysAgo) && isBefore(date, today);
+  });
+  const value: unknown[] = [];
+  lastSevenDays.forEach((day) => {
+    const weekDay = formatToWeekDay(day);
+    let withdrawAmount = 0;
+
+    weeklyExpense.forEach((transaction) => {
+      const formattedDate = formatDateTOYYYYMMDD(transaction.date);
+      if (formattedDate === day) {
+        withdrawAmount += transaction.amount;
+      }
+    });
+    value.push({
+      weekDay,
+      amount: withdrawAmount,
+    });
+  });
   const config = {
     data: {
-      value: expense,
+      value,
     },
-    xField: "date",
+    xField: "weekDay",
     yField: "amount",
     label: {
       textBaseline: "bottom",
