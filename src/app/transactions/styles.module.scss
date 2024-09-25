@@ -1,0 +1,8 @@
+.link {
+  @apply text-base flex items-center gap-[26px] border-b-4 border-b-mainBg py-2 font-medium text-textBlue;
+
+  &:hover,
+  &.active {
+    @apply border-b-4 border-b-darkBlue text-darkBlue;
+  }
+}
