@@ -83,13 +83,13 @@ function MyExpense({ transactions = [] }: Proptypes) {
     },
   };
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto flex-shrink-0 flex-grow-0">
       <div className="mb-[20px] mt-[25px] text-3xl font-semibold text-primary">
         My Expense
       </div>
       <Column
-        className={"bg-white rounded-[25px]"}
-        width={350}
+        className={"bg-white rounded-[25px] pt-3"}
+        width={400}
         height={245}
         {...config}
       />

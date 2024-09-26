@@ -21,7 +21,6 @@ function MyCards({ cards = [], users = [] }: Proptypes) {
   //=============================================
   // Init
   //=============================================
-  const router = useRouter();
 
   const mineCards = cards.filter((card) => card.holder === currentUserId);
   const firstTwoCards = mineCards?.slice(0, 2);
@@ -75,7 +74,7 @@ function MyCards({ cards = [], users = [] }: Proptypes) {
   // Render
   //=============================================
   return (
-    <div>
+    <div className={"flex-shrink flex-grow"}>
       <div className="mb-[20px] mt-[25px] flex justify-between overflow-auto">
         <span className="text-3xl font-semibold text-primary">My cards</span>
         {mineCards.length > 2 ? (
@@ -87,13 +86,13 @@ function MyCards({ cards = [], users = [] }: Proptypes) {
           </Link>
         ) : null}
       </div>
-      <div className="flex flex-wrap gap-[30px]">
+      <div className="flex justify-center gap-8">
         {isNoCard ? (
           <>
-            <div className="flex justify-center items-center text-2xl font-bold h-[235px] w-[350px] flex-shrink-0 rounded-[25px] bg-gray-400">
+            <div className="flex justify-center items-center text-2xl font-bold flex-shrink-0 rounded-[25px] bg-gray-400">
               There is no Card to display
             </div>
-            <div className="flex justify-center items-center text-2xl font-bold h-[235px] w-[350px] flex-shrink-0 rounded-[25px] bg-gray-400">
+            <div className="flex justify-center items-center text-2xl font-bold flex-shrink-0 rounded-[25px] bg-gray-400">
               There is no Card to display
             </div>
           </>

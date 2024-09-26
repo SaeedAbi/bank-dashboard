@@ -18,8 +18,8 @@ function Transaction() {
   const { data: transactionData } = useTransactions();
   const { data: categoriesData } = useCategories();
   return (
-    <div>
-      <div className={"flex flex-wrap gap-8"}>
+    <>
+      <div className={"flex flex-wrap gap-8 w-full"}>
         <MyCards cards={cardData} users={userData} />
         <MyExpense transactions={transactionData} />
       </div>
@@ -27,7 +27,7 @@ function Transaction() {
         transactions={transactionData}
         categories={categoriesData}
       />
-    </div>
+    </>
   );
 }
 
