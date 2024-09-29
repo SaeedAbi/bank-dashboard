@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./styles.module.scss";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import { Button, Pagination, PaginationProps } from "antd";
+import { Button, Pagination } from "antd";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { currentUserId } from "@/components/Autentication";
 import { ActionType, InventoryType, TransactionType } from "@/interfaces";
@@ -20,11 +21,23 @@ const PAGE_SIZE = 5;
 
 function RecentTransactions({ transactions = [], categories = [] }: PropTypes) {
   const [currentIndex, setCurrentIndex] = React.useState(1);
-  const myTransactions = React.useMemo(()=>{
+  const myTransactions = React.useMemo(() => {
     return transactions?.filter(
       (transaction) => transaction.userId === currentUserId
-    )
-  },[transactions]);
+    );
+  }, [transactions]);
+
+  const router = useRouter();
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
+  const creatQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const filteredTransactions = myTransactions.reduce<ExtendedTransactionType[]>(
     (prev, curr, index) => {
@@ -47,10 +60,10 @@ function RecentTransactions({ transactions = [], categories = [] }: PropTypes) {
     },
     []
   );
-  console.log(myTransactions);
 
-  const onChange: PaginationProps["onChange"] = (page) => {
+  const onChange = (page) => {
     setCurrentIndex(page);
+    router.push(pathName + "?" + creatQueryString("sort", page));
   };
   return (
     <div className={"flex flex-col flex-shrink flex-grow"}>
