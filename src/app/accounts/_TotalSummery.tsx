@@ -1,17 +1,35 @@
 import React from "react";
-import { CardType } from "@/interfaces";
+import { ActionType, CardType, TransactionType } from "@/interfaces";
 import { currentUserId } from "@/components/Autentication";
 
 interface PropTypes {
   cards?: CardType[];
+  transactions?: TransactionType[];
 }
 
-function TotalSummery({ cards }: PropTypes) {
+function TotalSummery({ cards, transactions }: PropTypes) {
   const myCards = cards?.filter((card) => card.holder === currentUserId);
   const totalBalance = myCards?.reduce((acc, curr) => {
     return acc + curr.balance;
   }, 0);
-  console.log(totalBalance);
+
+  const myWithdraw = transactions?.filter(
+    (transaction) =>
+      transaction.userId === currentUserId &&
+      transaction.type === ActionType.withdraw
+  );
+  const totalWithdraw = myWithdraw?.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  const myDeposit = transactions?.filter(
+    (transaction) =>
+      transaction.userId === currentUserId &&
+      transaction.type === ActionType.deposit
+  );
+  const totalDeposit = myDeposit?.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
   return (
     <div className={"flex justify-between items-center flex-wrap"}>
       <div className={"flex gap-4 items-center bg-white rounded-3xl py-6 px-9"}>
@@ -89,7 +107,9 @@ function TotalSummery({ cards }: PropTypes) {
         </svg>
         <div>
           <div className={"font-normal text-base text-textBlue"}>Income</div>
-          <div className={"text-black text-4xl font-semibold"}>3400$</div>
+          <div className={"text-black text-4xl font-semibold"}>
+            {totalDeposit}$
+          </div>
         </div>
       </div>
       <div className={"flex gap-4 items-center bg-white rounded-3xl py-6 px-9"}>
@@ -126,7 +146,9 @@ function TotalSummery({ cards }: PropTypes) {
         </svg>
         <div>
           <div className={"font-normal text-base text-textBlue"}>Expense</div>
-          <div className={"text-black text-4xl font-semibold"}>3400$</div>
+          <div className={"text-black text-4xl font-semibold"}>
+            {totalWithdraw}$
+          </div>
         </div>
       </div>
     </div>
