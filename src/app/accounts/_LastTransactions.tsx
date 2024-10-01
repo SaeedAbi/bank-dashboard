@@ -1,5 +1,6 @@
 import React from "react";
 import { DownSquareOutlined, UpSquareOutlined } from "@ant-design/icons";
+
 import {
   ActionType,
   InventoryType,
@@ -39,8 +40,8 @@ function LastTransactions({ transactions, categories }: PropType) {
   }, []);
   const threeLastTransaction = filteredTransactions?.slice(0, 3);
   return (
-    <div>
-      <div className="mb-[20px] mt-[25px] overflow-auto w-2/3">
+    <div className={"flex-shrink flex-grow-0"}>
+      <div className="mb-[20px] mt-[25px] overflow-auto">
         <div className="mb-5 text-3xl font-semibold text-primary">
           Last Transaction
         </div>
