@@ -81,13 +81,13 @@ function LastTransactions({ transactions, categories }: PropType) {
               </div>
               <div className={"text-textBlue text-base font-normal"}>
                 {transaction.status === TransactionStatus.complete && (
-                  <div>Complete</div>
+                  <div className={"text-green-500"}>Complete</div>
                 )}
                 {transaction.status === TransactionStatus.pending && (
-                  <div>Pending</div>
+                  <div className={"text-yellow-500"}>Pending</div>
                 )}
                 {transaction.status === TransactionStatus.rejected && (
-                  <div>Rejected</div>
+                  <div className={"text-red-500"}>Rejected</div>
                 )}
               </div>
               <div className={"text-textBlue text-base font-normal"}>
