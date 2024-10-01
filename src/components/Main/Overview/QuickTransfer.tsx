@@ -3,6 +3,7 @@ import { Avatar, Button, Input, Space } from "antd";
 import { RightOutlined, SendOutlined, UserOutlined } from "@ant-design/icons";
 
 import { InventoryType, UserType } from "@/interfaces";
+import { currentUserId } from "@/components/Autentication";
 
 interface PropType {
   users?: UserType[];
@@ -14,25 +15,28 @@ interface ContactType extends UserType {
 }
 
 function QuickTransfer({ users = [], positions = [] }: PropType) {
-  const contacts = users.reduce<ContactType[]>((prev, curr, index) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const myUsers = users?.filter((user) => user.id !== currentUserId);
+  const contacts = myUsers.reduce<ContactType[]>((prev, curr, index) => {
     const positionId = curr.position;
     const foundedPosition = positions?.find(
       (position) => position.id === positionId
     );
+    const lowerLimit = currentIndex * 3;
+    const higherLimit = lowerLimit + 2;
 
-    if (foundedPosition && index < 3) {
+    if (index >= lowerLimit && index <= higherLimit) {
       return [
         ...prev,
         {
           ...curr,
-          positionLabel: foundedPosition.label,
+          positionLabel: foundedPosition ? foundedPosition.label : "-",
         },
       ];
     }
 
     return prev;
   }, []);
-
   return (
     <div className={"mt-6"}>
       <div className="text-3xl font-semibold text-primary">
@@ -67,11 +71,14 @@ function QuickTransfer({ users = [], positions = [] }: PropType) {
               </div>
             </div>
           ))}
-          <Button
-            style={{ height: "50px", width: "50px" }}
-            shape={"circle"}
-            icon={<RightOutlined style={{ color: "#718EBF" }} />}
-          />
+          {myUsers.length > (currentIndex + 1) * 3 && (
+            <Button
+              onClick={() => setCurrentIndex((prevState) => prevState + 1)}
+              style={{ height: "50px", width: "50px" }}
+              shape={"circle"}
+              icon={<RightOutlined style={{ color: "#718EBF" }} />}
+            />
+          )}
         </div>
         <div>
           <div className={"text-base font-normal text-textBlue"}>
