@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   CardType,
   InventoryType,
+  StockType,
   TransactionType,
   UserType,
 } from "@/interfaces";
@@ -15,6 +16,7 @@ export const USER_KEY = "USER_KEY";
 export const TRANSACTION_KEY = "TRANSACTION_KEY";
 export const CATEGORY_KEY = "CATEGORY_KEY";
 export const POSITION_KEY = "POSITION_KEY";
+export const STOCK_KEY = "STOCK_KEY";
 
 //=============================================
 // Queries
@@ -65,5 +67,16 @@ export function usePositions() {
     async queryFn() {
       return fetchAPI<InventoryType[]>("/positions");
     },
+    suspense: true,
+  });
+}
+
+export function useStocks() {
+  return useQuery({
+    queryKey: [STOCK_KEY],
+    async queryFn() {
+      return fetchAPI<StockType[]>(`/stocks`);
+    },
+    suspense: true,
   });
 }
