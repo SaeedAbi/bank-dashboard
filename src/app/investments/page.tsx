@@ -13,12 +13,12 @@ function Investment() {
   return (
     <div className={"w-full"}>
       <InvestmentSummery stocks={stocksData} />
+      {/*<div>*/}
+      {/*  <MonthlyRev stocks={stocksData} />*/}
+      {/*  <DailyRev />*/}
+      {/*</div>*/}
       <div>
-        <MonthlyRev />
-        <DailyRev />
-      </div>
-      <div>
-        <MyInvestment />
+        <MyInvestment stocks={stocksData} />
         <TrendingStock />
       </div>
     </div>
