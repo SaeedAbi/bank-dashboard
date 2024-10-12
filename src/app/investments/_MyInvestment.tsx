@@ -6,12 +6,13 @@ interface PropTypes {
 }
 
 function MyInvestment({ stocks }: PropTypes) {
+  const lastThreeStocks = stocks?.slice(0, 3);
   return (
     <div className={"flex flex-col gap-4 flex-shrink flex-grow"}>
       <div className="text-3xl font-semibold text-primary mt-[25px]">
         My Investment
       </div>
-      {stocks?.map((stock) => (
+      {lastThreeStocks?.map((stock) => (
         <div
           key={stock.id}
           className={
