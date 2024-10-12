@@ -17,9 +17,9 @@ function Investment() {
       {/*  <MonthlyRev stocks={stocksData} />*/}
       {/*  <DailyRev />*/}
       {/*</div>*/}
-      <div>
+      <div className={"flex gap-[30px]"}>
         <MyInvestment stocks={stocksData} />
-        <TrendingStock />
+        <TrendingStock stocks={stocksData} />
       </div>
     </div>
   );
